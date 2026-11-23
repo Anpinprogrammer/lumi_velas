@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getContact } from "@/features/catalog/components/contact";
 import { Lookbook } from "@/features/catalog/components/lookbook";
 import { eventCategories, getCatalog, primaryCategoryName } from "@/features/catalog/data";
+import { pdfHref } from "@/features/pdf/selection";
 import { getSiteUrl } from "@/lib/env";
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default async function Catalogo() {
         whatsapp={whatsapp}
         siteUrl={getSiteUrl()}
         coverImage="/mock/mock-catalogo.webp"
+        pdfUrl={pdfHref({ download: true })}
       />
     </main>
   );

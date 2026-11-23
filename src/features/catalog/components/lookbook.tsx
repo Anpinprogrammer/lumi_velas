@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, LayoutGrid, Maximize, MessageCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, Download, LayoutGrid, Maximize, MessageCircle } from "lucide-react";
 import { Button, Modal } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { formatCOP } from "@/lib/format";
@@ -20,6 +20,8 @@ type Props = {
   events: ReadonlyArray<{ slug: string; name: string }>;
   whatsapp: string | null;
   siteUrl: string;
+  /** Catálogo PDF publicado (descarga). Sin valor, no se muestran los botones. */
+  pdfUrl?: string;
   coverImage: string;
 };
 
@@ -42,7 +44,7 @@ function Title({ name }: { name: string }) {
  * portada → una diapositiva por pieza → cierre de contacto. Flechas, teclado, deslizar, miniaturas,
  * índice y pantalla completa. Solo transform/opacity; con movimiento reducido las transiciones se anulan.
  */
-export function Lookbook({ items, events, whatsapp, siteUrl, coverImage }: Props) {
+export function Lookbook({ items, events, whatsapp, siteUrl, coverImage, pdfUrl }: Props) {
   const last = items.length + 1;
   const [i, setI] = useState(0);
   const [indexOpen, setIndexOpen] = useState(false);
@@ -106,6 +108,11 @@ export function Lookbook({ items, events, whatsapp, siteUrl, coverImage }: Props
           <small>Catálogo</small>
         </Link>
         <div className="lb-r">
+          {pdfUrl && (
+            <a href={pdfUrl} download className="lb-ibtn" aria-label="Descargar catálogo en PDF" title="Descargar PDF">
+              <Download aria-hidden className="size-[18px]" />
+            </a>
+          )}
           <button type="button" className="lb-ibtn" aria-label="Ver índice de piezas" title="Índice" onClick={() => setIndexOpen(true)}>
             <LayoutGrid aria-hidden className="size-[18px]" />
           </button>
@@ -152,6 +159,11 @@ export function Lookbook({ items, events, whatsapp, siteUrl, coverImage }: Props
                 <Button className="lb-btn-light" rightIcon={<ArrowRight className="size-4" aria-hidden />} onClick={() => go(1)}>
                   Comenzar recorrido
                 </Button>
+                {pdfUrl && (
+                  <Button href={pdfUrl} download variant="secondary" className="lb-btn-outline" leftIcon={<Download className="size-4" aria-hidden />}>
+                    Descargar PDF
+                  </Button>
+                )}
               </div>
             </div>
           </div>
@@ -263,6 +275,11 @@ export function Lookbook({ items, events, whatsapp, siteUrl, coverImage }: Props
                 <Button size="sm" variant="secondary" className="lb-btn-outline" href="/catalogo/eventos">
                   Ver eventos
                 </Button>
+                {pdfUrl && (
+                  <Button size="sm" variant="secondary" className="lb-btn-outline" href={pdfUrl} download leftIcon={<Download className="size-4" aria-hidden />}>
+                    Descargar PDF
+                  </Button>
+                )}
               </div>
             </div>
           </div>

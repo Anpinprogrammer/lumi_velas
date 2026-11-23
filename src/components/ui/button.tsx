@@ -33,7 +33,14 @@ type Common = {
   children: ReactNode;
 };
 type AsButton = Common & Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof Common> & { href?: undefined };
-type AsLink = Common & { href: string; target?: string; rel?: string; "aria-label"?: string };
+type AsLink = Common & {
+  href: string;
+  target?: string;
+  rel?: string;
+  "aria-label"?: string;
+  /** Archivo descargable (p. ej. el catálogo PDF): enlace HTML simple, sin navegación ni prefetch de Next. */
+  download?: boolean | string;
+};
 
 export function Button(props: AsButton | AsLink) {
   const { variant = "primary", size = "md", loading, leftIcon, rightIcon, className, children } = props;
@@ -49,6 +56,13 @@ export function Button(props: AsButton | AsLink) {
   if (props.href !== undefined) {
     const { href, target, rel } = props;
     const external = target === "_blank";
+    if (props.download) {
+      return (
+        <a href={href} download={props.download === true ? "" : props.download} aria-label={props["aria-label"]} className={cls}>
+          {content}
+        </a>
+      );
+    }
     return (
       <Link
         href={href}

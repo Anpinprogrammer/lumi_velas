@@ -16,7 +16,12 @@ const nextConfig: NextConfig = {
       ? [{ protocol: "https", hostname: supabaseHost, pathname: "/storage/v1/object/public/site-media/**" }]
       : [],
   },
-  /* config options here */
+  // El catálogo PDF (React PDF) lee fuentes e imágenes del disco en tiempo de ejecución:
+  // se incluyen en la función de Vercel y el paquete se carga desde node_modules (no se empaqueta).
+  serverExternalPackages: ["@react-pdf/renderer"],
+  outputFileTracingIncludes: {
+    "/catalogo/pdf": ["./src/features/pdf/fonts/*.woff", "./public/brand/*.webp", "./public/mock/**/*.webp"],
+  },
   cacheComponents: true,
   partialPrefetching: true,
   turbopack: {
