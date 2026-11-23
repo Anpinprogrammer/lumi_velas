@@ -81,7 +81,7 @@
 
   /* Tipografía */
   --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-dm-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans: var(--font-jakarta), system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --text-caption: 0.75rem;
   --text-label: 0.8125rem;
@@ -160,7 +160,7 @@ body {
 }
 .eyebrow {
   font-size: var(--text-caption);
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--color-text-muted);

@@ -18,8 +18,11 @@ function Anchor({ link, className, children, style }: { link: LinkItem; classNam
   );
 }
 
+const ARROW = "transition-transform duration-[var(--dur-base)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5";
+const TITLE = "font-display font-bold leading-[1.08] tracking-[-0.02em]";
+
 /**
- * Tarjeta de enlace con 4 jerarquías visuales (featured, image, standard, compact).
+ * Tarjeta de enlace (bento) con 4 jerarquías visuales (featured, image, standard, compact).
  * El texto se renderiza siempre como texto de React (nunca HTML).
  */
 export function LinkCard({ link, index }: { link: LinkItem; index: number }) {
@@ -28,38 +31,39 @@ export function LinkCard({ link, index }: { link: LinkItem; index: number }) {
 
   if (link.style === "featured") {
     return (
-      <Anchor link={link} style={delay} className={cn(base, "min-h-60 flex-col justify-end rounded-lg p-6 text-cream-50 sm:min-h-72 sm:p-8")}>
-        {link.imageUrl && <Image src={link.imageUrl} alt="" fill priority={index === 0} sizes="(min-width: 1024px) 560px, 100vw" className="-z-10 object-cover object-[50%_30%] transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out)] group-hover:scale-[1.04]" />}
-        <span aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(to_top,rgb(var(--page-scrim)/0.92),rgb(var(--page-scrim)/0.5)_55%,rgb(var(--page-scrim)/0.05))]" />
-        <span className="absolute right-5 top-5 inline-flex size-11 items-center justify-center rounded-pill bg-cream-50/90 text-brown-700 backdrop-blur"><LinkIcon name={link.icon ?? "sparkles"} className="size-5" /></span>
-        <span className="eyebrow !text-blush-200">Destacado</span>
-        <span className="font-display text-3xl leading-tight sm:text-4xl">{link.label}</span>
-        {link.description && <span className="mt-1 text-sm text-cream-50/85">{link.description}</span>}
-        <ArrowUpRight aria-hidden className="absolute bottom-6 right-6 size-6 transition-transform duration-[var(--dur-base)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 sm:bottom-8 sm:right-8" />
+      <Anchor link={link} style={delay} className={cn(base, "min-h-[118px] flex-col justify-end rounded-lg p-4 text-cream-50 sm:min-h-64 sm:p-7")}>
+        {link.imageUrl && <Image src={link.imageUrl} alt="" fill priority={index === 0} sizes="(min-width: 1024px) 640px, 100vw" className="-z-10 object-cover object-[50%_30%] transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out)] group-hover:scale-[1.04]" />}
+        <span aria-hidden className="lumi-scrim absolute inset-0 -z-10" />
+        <span className="mb-1.5 inline-flex w-fit rounded-pill bg-flame px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-brown-700">Destacado</span>
+        <span className={cn(TITLE, "pr-14 text-2xl sm:text-[1.7rem]")}>{link.label}</span>
+        {link.description && <span className="mt-1 pr-14 text-xs leading-snug text-cream-50/90 sm:text-sm">{link.description}</span>}
+        <span aria-hidden className="lumi-arrow-btn absolute bottom-4 right-4 inline-flex size-10 items-center justify-center rounded-pill bg-cream-50/90 text-brown-700 sm:bottom-6 sm:right-6 sm:size-11">
+          <ArrowUpRight className="size-5" />
+        </span>
       </Anchor>
     );
   }
 
   if (link.style === "image") {
     return (
-      <Anchor link={link} style={delay} className={cn(base, "items-stretch gap-4 rounded-lg bg-[var(--page-surface)] p-3 text-[var(--page-on-surface)] sm:gap-5")}>
+      <Anchor link={link} style={delay} className={cn(base, "items-center gap-3.5 rounded-lg bg-ivory p-3 text-brown-700 hover:bg-cream-50")}>
         {link.imageUrl && (
-          <span className="relative block size-24 shrink-0 overflow-hidden rounded-md sm:size-28">
-            <Image src={link.imageUrl} alt="" fill sizes="112px" className="object-cover transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out)] group-hover:scale-[1.06]" />
+          <span className="relative block size-16 shrink-0 overflow-hidden rounded-md sm:size-20">
+            <Image src={link.imageUrl} alt="" fill sizes="80px" className="object-cover transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out)] group-hover:scale-[1.06]" />
           </span>
         )}
-        <span className="flex min-w-0 flex-1 flex-col justify-center py-1 pr-2">
-          <span className="font-display text-2xl leading-tight">{link.label}</span>
-          {link.description && <span className="mt-0.5 text-sm opacity-80">{link.description}</span>}
+        <span className="flex min-w-0 flex-1 flex-col justify-center pr-6">
+          <span className={cn(TITLE, "text-lg sm:text-xl")}>{link.label}</span>
+          {link.description && <span className="mt-0.5 text-xs leading-snug opacity-85 sm:text-sm">{link.description}</span>}
         </span>
-        <ArrowUpRight aria-hidden className="absolute right-4 top-4 size-5 opacity-70 transition-transform duration-[var(--dur-base)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+        <ArrowUpRight aria-hidden className={cn("absolute right-4 top-4 size-5 opacity-70", ARROW)} />
       </Anchor>
     );
   }
 
   if (link.style === "compact") {
     return (
-      <Anchor link={link} style={delay} className={cn(base, "items-center justify-center gap-2 rounded-pill border border-[var(--page-line)] px-5 py-3 text-sm font-medium text-[var(--page-text)]")}>
+      <Anchor link={link} style={delay} className={cn(base, "items-center justify-center gap-2 rounded-pill border border-flame/60 bg-cream-50/10 px-5 py-3 text-sm font-semibold text-[var(--page-text)] backdrop-blur-sm hover:bg-cream-50/20")}>
         <LinkIcon name={link.icon} className="size-[18px]" />
         {link.label}
       </Anchor>
@@ -67,13 +71,13 @@ export function LinkCard({ link, index }: { link: LinkItem; index: number }) {
   }
 
   return (
-    <Anchor link={link} style={delay} className={cn(base, "items-center gap-4 rounded-lg bg-[var(--page-surface)] p-4 text-[var(--page-on-surface)] sm:p-5")}>
-      <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-pill bg-blush-200 text-sage-700"><LinkIcon name={link.icon} className="size-5" /></span>
-      <span className="flex min-w-0 flex-1 flex-col">
-        <span className="font-display text-2xl leading-tight">{link.label}</span>
-        {link.description && <span className="text-sm opacity-80">{link.description}</span>}
+    <Anchor link={link} style={delay} className={cn(base, "h-full items-center gap-3.5 rounded-lg bg-ivory/95 p-4 text-brown-700 hover:bg-ivory sm:flex-col sm:items-start sm:gap-3 sm:p-5")}>
+      <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-pill bg-blush-200 text-sage-700"><LinkIcon name={link.icon} className="size-5" /></span>
+      <span className="flex min-w-0 flex-1 flex-col pr-6">
+        <span className={cn(TITLE, "text-lg")}>{link.label}</span>
+        {link.description && <span className="mt-0.5 text-xs leading-snug opacity-85 sm:text-sm">{link.description}</span>}
       </span>
-      <ArrowUpRight aria-hidden className="size-5 shrink-0 opacity-70 transition-transform duration-[var(--dur-base)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+      <ArrowUpRight aria-hidden className={cn("absolute right-4 top-4 size-5 opacity-70", ARROW)} />
     </Anchor>
   );
 }

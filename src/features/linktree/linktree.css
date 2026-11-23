@@ -55,14 +55,20 @@
    ========================================================= */
 .lumi-stage { isolation: isolate; }
 .lumi-plate {
+  border: 1px solid rgb(233 198 169 / 0.6); /* kraft-300 */
+  box-shadow: var(--shadow-soft);
   background:
     radial-gradient(ellipse 70% 45% at 50% 30%, rgb(252 190 92 / 0.22), transparent 70%),
     linear-gradient(180deg, var(--lumi-blush-100) 0%, var(--lumi-cream-50) 62%, var(--lumi-cream-100) 100%);
-  box-shadow:
-    0 0 0 1px var(--lumi-amber-400),
-    0 0 0 7px rgb(254 245 241 / 0.55),
-    0 0 0 8px rgb(210 138 66 / 0.55),
-    var(--shadow-lift);
+}
+@media (min-width: 1024px) {
+  .lumi-plate {
+    border: 2px solid rgb(233 198 169 / 0.45);
+    box-shadow:
+      0 0 0 6px rgb(254 245 241 / 0.5),
+      0 0 0 7px rgb(210 138 66 / 0.55),
+      var(--shadow-lift);
+  }
 }
 .lumi-halo {
   position: absolute;
@@ -153,4 +159,54 @@
     radial-gradient(42rem 32rem at 8% 6%, rgb(251 210 203 / 0.55), transparent 70%),
     radial-gradient(36rem 30rem at 96% 92%, rgb(233 198 169 / 0.4), transparent 70%),
     var(--page-bg);
+}
+
+/* =========================================================
+   REDISEÑO EDITORIAL — textura, bordes interiores y tarjetas bento
+   Solo colores del logo (tokens --lumi-*).
+   ========================================================= */
+
+/* Grano orgánico muy tenue (ruido SVG) sobre el fondo; decorativo y sin eventos */
+.lumi-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Borde interior fino tipo papelería; se ilumina en dorado al interactuar */
+.lumi-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgb(251 247 240 / 0.15);
+  transition: box-shadow var(--dur-base) var(--ease);
+}
+.lumi-card:focus-visible::before { box-shadow: inset 0 0 0 2px var(--lumi-flame); }
+@media (hover: hover) {
+  .lumi-card:hover::before { box-shadow: inset 0 0 0 1px rgb(252 190 92 / 0.85); }
+}
+
+/* Degradado cálido para legibilidad sobre la foto: verde del logo -> ámbar */
+.lumi-scrim {
+  background: linear-gradient(to top right, rgb(var(--page-scrim) / 0.95), rgb(var(--page-scrim) / 0.72) 55%, rgb(154 95 31 / 0.45));
+}
+
+/* Botón circular de la tarjeta destacada: gira y se ilumina */
+.lumi-arrow-btn { transition: transform var(--dur-base) var(--ease-out), background-color var(--dur-base) var(--ease); }
+@media (hover: hover) {
+  .lumi-card:hover .lumi-arrow-btn { transform: rotate(12deg) scale(1.06); background-color: var(--lumi-flame); }
+}
+.lumi-card:hover .lumi-arrow-btn svg { transform: translate(2px, -2px); }
+.lumi-arrow-btn svg { transition: transform var(--dur-base) var(--ease-out); }
+@media (prefers-reduced-motion: reduce) {
+  .lumi-arrow-btn, .lumi-arrow-btn svg { transition: none; }
+  .lumi-card:hover .lumi-arrow-btn { transform: none; }
 }

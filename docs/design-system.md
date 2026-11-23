@@ -1,6 +1,6 @@
 # Sistema de diseño — Lumi
 
-**Estado:** Fase 1, propuesta pendiente de aprobación. Las tipografías son **provisionales**.
+**Estado:** Fase 1, propuesta pendiente de aprobación. Las tipografías se actualizaron en el rediseño editorial del Linktree.
 Showcase en desarrollo: `npm run dev` → `/dev/design-system` (en producción devuelve 404 salvo `NEXT_PUBLIC_SHOW_DESIGN_SYSTEM=true`; siempre `noindex`).
 
 ## Identidad
@@ -33,12 +33,14 @@ Muestreado del logo. `(*)` = derivado para alcanzar contraste AA como texto.
 Regla: **solo** los tokens con contraste ≥4.5:1 se usan para texto. Los demás son decorativos.
 Tres capas: primitivos (`--lumi-*`) → semánticos (`brand`, `text`, `border`, `focus`…) → componentes. Todo vive en `src/app/globals.css` y se expone como utilidades Tailwind v4 (`bg-sage-600`, `text-text-muted`).
 
-## Tipografía (provisional)
+## Tipografía (emparejamiento editorial)
 
 | Rol | Fuente | Nota |
 |---|---|---|
-| Display / headings | Cormorant Garamond (300–600, cursiva) | compatible con el wordmark; **no identificada como la original** |
-| Body / UI / botones / labels | DM Sans | compatible con la línea inferior del logo |
+| Display / títulos (`font-display`) | Cormorant Garamond 600–700 (`next/font`) | `tracking -0.02em`, `leading ≈1.08`; el Linktree usa `font-display font-bold tracking-[-0.02em] leading-[1.08]` (peso, tracking e interlineado se aplican con utilidades, no en `.font-display`) |
+| Body / UI / botones / etiquetas | Plus Jakarta Sans 400–700 (`next/font`) | las etiquetas `.eyebrow` van en 700 para no perder contraste |
+
+El PDF del catálogo (`src/features/pdf/fonts.ts`) sigue con su propio juego embebido (Cormorant + DM Sans).
 
 Escala fluida: `--text-h1/h2/h3`, `--text-body`, `--text-label`, `--text-caption`. Etiquetas: `.eyebrow` (mayúsculas, tracking 0.18em). Cambiar de fuente = editar `src/app/layout.tsx`.
 
