@@ -24,8 +24,11 @@ Muestreado del logo. `(*)` = derivado para alcanzar contraste AA como texto.
 | `amber-600` (*) / `amber-400` | `#9A5F1F` / `#D28A42` | 4.9 / 2.6 | texto de aviso / decorativo |
 | `flame` | `#FCBE5C` | — | brillo, estacional |
 | `cream-50/100/200`, `kraft-300` | `#FBF7F0` `#F7E3D0` `#F2D6BD` `#E9C6A9` | — | fondo y superficies cálidas |
-| `cocoa-700/500` (*) | `#4A3A30` `#6B5647` | 10.1 / 6.5 | texto principal / secundario |
-| `night` (*) | `#2A2520` | — | fondo oscuro de temporada |
+| `brown-700` | `#452E23` | 12.6 | texto principal (marrón del tagline del logo; secundario = mismo marrón al 78 %) |
+| `brown-400` | `#846852` | 4.8 | tono medio del mismo marrón |
+| `ivory` | `#FEF5F1` | — | superficies (blanco cálido de la vela del logo) |
+
+**Regla del cliente:** solo se usan colores y tonos del logo. No hay blancos puros, negros ni marrones ajenos; las temporadas también se construyen con esta paleta.
 
 Regla: **solo** los tokens con contraste ≥4.5:1 se usan para texto. Los demás son decorativos.
 Tres capas: primitivos (`--lumi-*`) → semánticos (`brand`, `text`, `border`, `focus`…) → componentes. Todo vive en `src/app/globals.css` y se expone como utilidades Tailwind v4 (`bg-sage-600`, `text-text-muted`).

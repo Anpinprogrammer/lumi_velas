@@ -33,7 +33,7 @@ export function LoadingState({ label = "Cargando…", lines = 3, className }: { 
 
 export function ErrorState({ title = "No pudimos cargar esto", description, action, className }: { title?: string; description?: string; action?: ReactNode; className?: string }) {
   return (
-    <div role="alert" className={cn(wrap, "border border-error/30 bg-[#fbeeec]", className)}>
+    <div role="alert" className={cn(wrap, "border border-error/30 bg-blush-100", className)}>
       <AlertCircle aria-hidden className="size-9 text-error" strokeWidth={1.5} />
       <h3 className="font-display text-2xl">{title}</h3>
       {description && <p className="max-w-sm text-text-muted">{description}</p>}

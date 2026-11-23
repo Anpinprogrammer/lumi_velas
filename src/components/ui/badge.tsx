@@ -4,13 +4,13 @@ import { cn } from "@/lib/cn";
 export type BadgeVariant = "neutral" | "brand" | "blush" | "accent" | "success" | "warning" | "error";
 
 const variants: Record<BadgeVariant, string> = {
-  neutral: "bg-cream-100 text-cocoa-700",
-  brand: "bg-sage-600 text-white",
+  neutral: "bg-cream-100 text-brown-700",
+  brand: "bg-sage-600 text-ivory",
   blush: "bg-blush-200 text-sage-700",
-  accent: "bg-coral-600 text-white",
-  success: "bg-[#e3eedf] text-success",
-  warning: "bg-[#f6e6cf] text-amber-600",
-  error: "bg-[#f6dcd8] text-error",
+  accent: "bg-coral-600 text-ivory",
+  success: "bg-sage-300/25 text-sage-700",
+  warning: "bg-amber-400/20 text-amber-600",
+  error: "bg-coral-400/20 text-coral-600",
 };
 
 export function Badge({ variant = "neutral", children, className }: { variant?: BadgeVariant; children: ReactNode; className?: string }) {

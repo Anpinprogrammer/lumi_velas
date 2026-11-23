@@ -33,8 +33,8 @@ export function LinksPage({ season, data }: { season: ResolvedSeason; data: Link
     "--page-glow": p.glow,
     "--page-surface": p.surface,
     "--page-on-surface": p.onSurface,
-    "--page-scrim": season.seasonal ? "42 37 32" : "79 85 55",
-    "--page-line": season.seasonal ? "rgb(251 247 240 / 0.22)" : "rgb(74 58 48 / 0.18)",
+    "--page-scrim": season.seasonal ? "79 85 55" : "79 85 55",
+    "--page-line": season.seasonal ? "rgb(251 247 240 / 0.22)" : "rgb(69 46 35 / 0.18)",
     "--color-focus": season.seasonal ? "#FCBE5C" : "#A84F3F",
   } as CSSProperties;
 
@@ -42,7 +42,7 @@ export function LinksPage({ season, data }: { season: ResolvedSeason; data: Link
   return (
     <main className="lumi-page relative min-h-dvh overflow-x-clip" data-season={season.theme.id} style={vars}>
       <SeasonLayer season={season} />
-      <div className="relative z-10 mx-auto grid w-full max-w-[1180px] gap-12 px-5 pb-16 pt-24 sm:px-8 lg:grid-cols-2 lg:items-start lg:gap-16 lg:px-12 lg:pt-28">
+      <div className="relative z-10 mx-auto grid w-full max-w-[1180px] gap-12 px-5 pb-16 pt-20 sm:px-8 sm:pt-24 lg:grid-cols-2 lg:items-start lg:gap-16 lg:px-12 lg:pt-28">
         <Hero season={season} className="lg:sticky lg:top-24" />
         <div className="flex flex-col lg:pt-8">
           <nav aria-label="Enlaces de Lumi">

@@ -8,7 +8,7 @@ const variants: Record<CardVariant, string> = {
   warm: "bg-cream-100",
   blush: "bg-blush-100",
   outline: "border border-border bg-transparent",
-  dark: "bg-night text-cream-50",
+  dark: "bg-sage-600 text-cream-50",
 };
 
 type Props<T extends ElementType> = {

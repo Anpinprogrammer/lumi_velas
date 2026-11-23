@@ -3,12 +3,12 @@ import type { SeasonPalette, SeasonTheme } from "./types";
 /** Paleta de marca (tema base). Los temas estacionales la sobrescriben solo en esta capa de página. */
 export const BASE_PALETTE: SeasonPalette = {
   bg: "#FBF7F0",
-  text: "#4A3A30",
-  textMuted: "#6B5647",
+  text: "#452E23",
+  textMuted: "rgb(69 46 35 / 0.78)",
   accent: "#A84F3F",
-  glow: "rgb(168 79 63 / 0.18)",
-  surface: "#FFFFFF",
-  onSurface: "#4A3A30",
+  glow: "rgb(210 138 66 / 0.22)",
+  surface: "#FEF5F1",
+  onSurface: "#452E23",
 };
 
 /** Tema base: la identidad de marca sin decoración estacional. */
@@ -53,13 +53,14 @@ export const SEASON_THEMES: readonly SeasonTheme[] = [
     heroImage: "/mock/mock-navidad.webp", // MOCKUP hasta tener fotos reales
     message: { badge: "Navidad Lumi" },
     palette: {
-      bg: "#2A2520",
+      // Solo colores del logo: verde del wordmark (#666C48 → #4F5537), crema y llama.
+      bg: "linear-gradient(168deg, #666C48 0%, #5A6040 45%, #4F5537 100%)",
       text: "#FBF7F0",
-      textMuted: "#E4D6C6",
-      accent: "#FCBE5C",
+      textMuted: "#FEF5F1",
+      accent: "#FBD2CB",
       glow: "rgb(252 190 92 / 0.35)",
-      surface: "#FBF7F0",
-      onSurface: "#4A3A30",
+      surface: "#FEF5F1",
+      onSurface: "#452E23",
     },
     monthOverrides: {
       11: { intensity: "low", message: { badge: "Comienza la temporada" } },

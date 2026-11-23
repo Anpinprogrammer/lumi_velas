@@ -34,7 +34,7 @@ export function Field({ id, label, hint, error, required, children, className }:
 }
 
 export const fieldControl =
-  "w-full rounded-md border bg-surface px-4 text-text placeholder:text-cocoa-400/70 " +
+  "w-full rounded-md border bg-surface px-4 text-text placeholder:text-brown-400 " +
   "transition-colors duration-[var(--dur-base)] ease-[var(--ease)] " +
   "hover:border-sage-600/60 focus-visible:border-sage-600 " +
   "disabled:cursor-not-allowed disabled:bg-cream-100 disabled:opacity-60";
