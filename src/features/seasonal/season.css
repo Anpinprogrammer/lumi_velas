@@ -1,0 +1,115 @@
+/* Capa estacional — solo transform/opacity. Ver docs/seasonal-theme-engine.md */
+.season-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  contain: layout paint style;
+}
+
+/* ---------- Luces ---------- */
+.season-lights {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 70px;
+}
+.season-lights svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 70px;
+}
+.season-lights path {
+  stroke: rgb(251 247 240 / 0.28);
+  stroke-width: 1.2px;
+  fill: none;
+}
+.season-bulb {
+  position: absolute;
+  width: 9px;
+  height: 12px;
+  margin: 0 0 0 -4.5px;
+  border-radius: 50% 50% 55% 55%;
+  background: #fcbe5c;
+  box-shadow: 0 0 14px 4px rgb(252 190 92 / 0.45);
+  animation:
+    lumi-fade 900ms var(--ease-out) both,
+    season-twinkle 4.6s ease-in-out infinite alternate;
+  animation-delay: calc(var(--i) * 110ms), calc(var(--i) * 260ms);
+}
+.season-bulb[data-tone="1"] { background: #ffe3a3; }
+.season-bulb[data-tone="2"] { background: #e9a24b; }
+.season-bulb::before {
+  /* casquillo */
+  content: "";
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  top: -4px;
+  height: 4px;
+  border-radius: 1px;
+  background: rgb(251 247 240 / 0.35);
+}
+@keyframes season-twinkle {
+  from { opacity: 0.55; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1.06); }
+}
+
+/* ---------- Destellos ---------- */
+.season-spark {
+  position: absolute;
+  width: var(--s);
+  height: var(--s);
+  background: #ffe3a3;
+  clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+  opacity: 0;
+  animation: season-spark var(--t) ease-in-out infinite;
+  animation-delay: var(--d);
+}
+@keyframes season-spark {
+  0%, 100% { opacity: 0; transform: translateY(0) scale(0.6); }
+  50% { opacity: 0.9; transform: translateY(-10px) scale(1); }
+}
+/* Intensidad: cuántos destellos se ven (móvil: la mitad) */
+.season-layer[data-intensity="low"] .season-spark:nth-of-type(n + 5) { display: none; }
+.season-layer[data-intensity="medium"] .season-spark:nth-of-type(n + 9) { display: none; }
+@media (max-width: 639px) {
+  .season-layer .season-spark:nth-of-type(n + 5) { display: none; }
+  .season-bulb:nth-child(even) { display: none; }
+}
+
+/* ---------- Pino ---------- */
+.season-pine {
+  position: absolute;
+  top: -18px;
+  width: min(46vw, 340px);
+  height: auto;
+  opacity: 0.9;
+}
+.season-pine--l { left: -50px; transform: rotate(6deg); transform-origin: 50% 0; }
+.season-pine--r { right: -50px; transform: scaleX(-1) rotate(6deg); transform-origin: 50% 0; }
+.season-layer[data-intensity="low"] .season-pine { opacity: 0.55; }
+@media (max-width: 639px) {
+  .season-pine { width: 62vw; top: 30px; opacity: 0.7; }
+}
+
+/* Parallax muy sutil, solo si el navegador lo soporta y no se pidió menos movimiento */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .season-pine {
+      animation: season-parallax linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 100vh;
+    }
+    .season-pine--r { animation-name: season-parallax-r; }
+    @keyframes season-parallax { to { translate: 0 -26px; } }
+    @keyframes season-parallax-r { to { translate: 0 -26px; } }
+  }
+}
+
+/* Movimiento reducido: sin animaciones; luces visibles y estáticas, sin destellos flotantes */
+@media (prefers-reduced-motion: reduce) {
+  .season-bulb { animation: none; opacity: 1; }
+  .season-spark { animation: none; opacity: 0; }
+}

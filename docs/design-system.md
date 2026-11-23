@@ -70,8 +70,8 @@ Los iconos son Lucide. **Lucide ya no incluye iconos de marcas** (Instagram, Wha
 ## Cómo lo usa el Linktree estacional (Fase 3)
 
 - Es una ruta más hecha con los mismos componentes y tokens (variantes de `Card`/`CategoryCard` para jerarquías de enlaces).
-- `SeasonalThemeEngine` (Fase 3) resuelve el mes en `America/Bogota` y pone `data-season="…"` en el contenedor. Cada tema **solo sobrescribe `--season-*`** (fondo, texto, acento) y activa una capa decorativa cargada de forma diferida. Los tokens de marca nunca cambian.
-- Hoy existe solo el bloque `[data-season="navidad"]` y su vista previa en el showcase; **el motor no está implementado**.
+- `SeasonalThemeEngine` resuelve el mes en `America/Bogota` y pone `data-season="…"` en el contenedor. Cada tema **solo sobrescribe `--season-*`** (fondo, texto, acento) y activa una capa decorativa cargada de forma diferida. Los tokens de marca nunca cambian.
+- Implementado en la Fase 3: ver `docs/seasonal-theme-engine.md`. Solo Navidad (nov–dic) está habilitada.
 
 ## Pendiente de validación
 

@@ -9,6 +9,7 @@
 | `NEXT_PUBLIC_SITE_URL` | ✅ | ✅ | dominio final; usada en canónicas y sitemap |
 | `SITE_INDEXABLE` | ❌ hasta autorizar | ❌ | `true` activa robots/sitemap |
 | `ENABLE_STAGE_B` | ❌ **nunca** | opcional | expone la web completa |
+| `SEASON_OVERRIDE` | ❌ (se ignora) | opcional | fuerza `navidad`/`base` para previsualizar |
 
 No existe `service_role`: no la agregues.
 
