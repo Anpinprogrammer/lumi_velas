@@ -13,6 +13,7 @@ import { eventCategories, findCategory, findProduct, getCatalog, relatedProducts
 import { productInquiryMessage } from "@/features/catalog/whatsapp";
 import { getSiteUrl } from "@/lib/env";
 import { formatCOP } from "@/lib/format";
+import { isProductionMode } from "@/lib/mode";
 import { buildWhatsAppUrl } from "@/lib/validation/url";
 
 export function generateStaticParams() {
@@ -38,7 +39,11 @@ export default async function Producto({ params }: PageProps<"/catalogo/producto
 
   const { whatsapp } = await getContact();
   const isEvent = p.type === "evento";
-  const section = isEvent ? { href: "/catalogo/eventos", label: "Eventos" } : { href: "/catalogo/velas", label: "Velas" };
+  // En producción las secciones de eventos y velas no existen: solo se enlaza al catálogo.
+  const productionMode = isProductionMode();
+  const section = isEvent
+    ? { href: productionMode ? undefined : "/catalogo/eventos", label: "Eventos" }
+    : { href: productionMode ? undefined : "/catalogo/velas", label: "Velas" };
   const url = `${getSiteUrl()}/catalogo/producto/${p.slug}`;
   const cats = p.categories.map((s) => findCategory(s)).filter((c) => c !== undefined);
   const specs = Object.entries(p.specs ?? {});
@@ -49,7 +54,13 @@ export default async function Producto({ params }: PageProps<"/catalogo/producto
   return (
     <>
       <div className="mx-auto max-w-6xl px-5 pt-10 sm:px-8 sm:pt-14 lg:px-12">
-        <Breadcrumbs items={[{ href: "/catalogo", label: "Catálogo" }, section, { label: p.name }]} />
+        <Breadcrumbs
+          items={
+            productionMode
+              ? [{ href: "/catalogo", label: "Catálogo" }, { label: p.name }]
+              : [{ href: "/catalogo", label: "Catálogo" }, section, { label: p.name }]
+          }
+        />
         <div className="mt-8 grid gap-10 lg:grid-cols-2 lg:gap-16">
           <ImageGallery images={[...p.images]} />
           <div className="flex flex-col gap-6 lg:pt-4">
@@ -73,13 +84,11 @@ export default async function Producto({ params }: PageProps<"/catalogo/producto
             <p className="text-lg text-text-muted">{p.description}</p>
             {cats.length > 0 && (
               <ul aria-label="Categorías" className="flex flex-wrap gap-2">
-                {cats.map((c) => (
-                  <li key={c.slug}>
-                    <Link href={c.kind === "evento" ? `/catalogo/eventos/${c.slug}` : `/catalogo/velas?categoria=${c.slug}`} className="inline-flex">
-                      <Badge variant="blush">{c.name}</Badge>
-                    </Link>
-                  </li>
-                ))}
+                {cats.map((c) => {
+                  const href = productionMode ? null : c.kind === "evento" ? `/catalogo/eventos/${c.slug}` : `/catalogo/velas?categoria=${c.slug}`;
+                  const badge = <Badge variant="blush">{c.name}</Badge>;
+                  return <li key={c.slug}>{href ? <Link href={href} className="inline-flex">{badge}</Link> : badge}</li>;
+                })}
                 {isEvent && <li><Badge variant="accent">Personalizable</Badge></li>}
               </ul>
             )}

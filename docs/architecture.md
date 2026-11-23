@@ -42,8 +42,8 @@ Regla: las rutas importan de `features/` y `components/`; `features/` no importa
 | Ruta | Estado | Notas |
 |---|---|---|
 | `/` y `/links` | **Linktree implementado (Fase 3)** | Mismo componente. **Canónica: `/links`**. Datos de `linktree_links` (Supabase) con respaldo por defecto; temporada por mes (Bogotá). |
-| `/catalogo`, `/catalogo/eventos`, `/catalogo/velas` | **maqueta implementada (Fase 4)** | Datos de muestra en código; ver `docs/catalog.md` |
-| `/catalogo/eventos/[slug]`, `/catalogo/producto/[slug]` | **maqueta implementada (Fase 4)** | Prerenderizadas; slug desconocido = 404 |
+| `/catalogo`, `/catalogo/producto/[slug]` | **maqueta implementada (Fase 4)** | Datos de muestra en código; ver `docs/catalog.md` |
+| `/catalogo/eventos`, `/catalogo/eventos/[slug]`, `/catalogo/velas` | **maqueta; 404 en producción** | En `APP_MODE=production` el Linktree manda esos enlaces a WhatsApp (ver modo de entrega) |
 | `/admin/login` | funcional* | |
 | `/admin`, `/admin/productos`, `/admin/links`, `/admin/catalogo-pdf` | protegidas; contenido en Fase 5–6 | |
 | `/cursos` (y futuras de Etapa B) | **404 en producción** | grupo `(etapa-b)` |
@@ -53,6 +53,16 @@ Regla: las rutas importan de `features/` y `components/`; `features/` no importa
 
 ### Transición `/` → web completa
 `/` y `/links` comparten componente y la canónica ya es `/links`. Cuando el cliente autorice la web completa: (1) `/` pasa a la nueva portada, (2) `/links` sigue sirviendo el Linktree, (3) se actualiza el enlace de la bio de Instagram a `/links`. Hasta ese día no se cambia nada y no hay enlaces rotos.
+
+## Modo de entrega (`APP_MODE`)
+
+Independiente de `NODE_ENV` (`src/lib/mode.ts`):
+
+- `development`: desarrollo/Preview; todo visible (proyecto en curso).
+- `production`: despliegue del cliente; solo lo pagado. `/catalogo/eventos*` y `/catalogo/velas` responden **404** y los enlaces del Linktree que apuntan allí se convierten en **WhatsApp** (si no hay número configurado, se omiten). El catálogo (`/catalogo`), los productos y el PDF siguen disponibles.
+- Si la variable falta o trae otro valor se usa `NODE_ENV` (development en local, production en un build/despliegue) y se resuelve al compilar.
+
+La reescritura es `adaptLinksForProduction` (`src/features/linktree/delivery.ts`, con pruebas) y se aplica dentro de la lectura cacheada del Linktree; el modo forma parte de la clave de caché. El catálogo oculta esas secciones de su navegación, breadcrumbs y sitemap para no dejar enlaces rotos.
 
 ## Aislamiento de la Etapa B
 

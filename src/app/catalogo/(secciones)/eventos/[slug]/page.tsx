@@ -9,6 +9,7 @@ import { Breadcrumbs, CtaBand, Em } from "@/features/catalog/components/page-her
 import { ProductGrid } from "@/features/catalog/components/product-grid";
 import { QuoteButton } from "@/features/catalog/components/quote-dialog";
 import { eventCategories, findCategory, productsIn } from "@/features/catalog/data";
+import { isProductionMode } from "@/lib/mode";
 
 export function generateStaticParams() {
   return eventCategories().map((c) => ({ slug: c.slug }));
@@ -29,6 +30,8 @@ export async function generateMetadata({ params }: PageProps<"/catalogo/eventos/
 const ROMAN = ["i", "ii", "iii", "iv", "v", "vi"];
 
 export default async function EventoCategoria({ params }: PageProps<"/catalogo/eventos/[slug]">) {
+  // En producción el cliente solo tiene el catálogo pagado: esta sección va a WhatsApp desde el Linktree.
+  if (isProductionMode()) notFound();
   const { slug } = await params;
   const cat = findCategory(slug);
   if (!cat || cat.kind !== "evento") notFound();

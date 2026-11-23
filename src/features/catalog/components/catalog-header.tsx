@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 import { buildWhatsAppUrl } from "@/lib/validation/url";
+import { isProductionMode } from "@/lib/mode";
 import { getContact } from "./contact";
 
 const NAV = [
@@ -12,6 +13,8 @@ const NAV = [
 
 export async function CatalogHeader() {
   const { whatsapp } = await getContact();
+  // En producción esas secciones no existen (404): no se enlazan desde el catálogo pagado.
+  const nav = isProductionMode() ? NAV.filter((n) => n.href === "/catalogo") : NAV;
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-cream-50/85 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-2 px-5 py-3 sm:px-8 lg:px-12">
@@ -20,7 +23,7 @@ export async function CatalogHeader() {
         </Link>
         <nav aria-label="Catálogo" className="order-3 -mx-1 w-full overflow-x-auto sm:order-none sm:mx-0 sm:w-auto">
           <ul className="flex gap-1">
-            {NAV.map((n) => (
+            {nav.map((n) => (
               <li key={n.href}>
                 <Link href={n.href} className="inline-flex h-10 items-center rounded-pill px-4 text-sm font-medium text-text transition-colors hover:bg-blush-100">
                   {n.label}

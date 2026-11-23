@@ -4,6 +4,7 @@ import { Lookbook } from "@/features/catalog/components/lookbook";
 import { eventCategories, getCatalog, primaryCategoryName } from "@/features/catalog/data";
 import { pdfHref } from "@/features/pdf/selection";
 import { getSiteUrl } from "@/lib/env";
+import { isProductionMode } from "@/lib/mode";
 
 export const metadata: Metadata = {
   title: "Catálogo · Lumi",
@@ -25,6 +26,7 @@ export default async function Catalogo() {
         siteUrl={getSiteUrl()}
         coverImage="/mock/mock-catalogo.webp"
         pdfUrl={pdfHref({ download: true })}
+        showEventsLink={!isProductionMode()}
       />
     </main>
   );

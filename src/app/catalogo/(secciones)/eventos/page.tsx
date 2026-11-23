@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui";
 import { getContact } from "@/features/catalog/components/contact";
@@ -8,6 +9,7 @@ import { CtaBand, Em, PageHero } from "@/features/catalog/components/page-hero";
 import { QuoteButton } from "@/features/catalog/components/quote-dialog";
 import { eventCategories } from "@/features/catalog/data";
 import { PERSONALIZATION, QUOTE_STEPS } from "@/features/catalog/personalization";
+import { isProductionMode } from "@/lib/mode";
 
 export const metadata: Metadata = {
   title: "Velas para eventos · Lumi",
@@ -16,6 +18,8 @@ export const metadata: Metadata = {
 };
 
 export default async function Eventos() {
+  // En producción el cliente solo tiene el catálogo pagado: esta sección va a WhatsApp desde el Linktree.
+  if (isProductionMode()) notFound();
   const { whatsapp } = await getContact();
   const events = eventCategories();
   const quoteEvents = events.map(({ slug, name }) => ({ slug, name }));

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Button } from "@/components/ui";
 import { CtaBand, Em, PageHero } from "@/features/catalog/components/page-hero";
 import { VelasBrowser } from "@/features/catalog/components/velas-browser";
 import { candleCategories, getCatalog } from "@/features/catalog/data";
+import { isProductionMode } from "@/lib/mode";
 
 export const metadata: Metadata = {
   title: "Velas individuales · Lumi",
@@ -11,6 +13,8 @@ export const metadata: Metadata = {
 };
 
 export default function Velas() {
+  // En producción el cliente solo tiene el catálogo pagado: esta sección va a WhatsApp desde el Linktree.
+  if (isProductionMode()) notFound();
   const catalog = getCatalog();
   return (
     <>

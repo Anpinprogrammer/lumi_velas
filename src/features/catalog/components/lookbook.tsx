@@ -24,6 +24,8 @@ type Props = {
   /** Catálogo PDF publicado (descarga). Sin valor, no se muestran los botones. */
   pdfUrl?: string;
   coverImage: string;
+  /** En producción las páginas de eventos no existen: se oculta el enlace. */
+  showEventsLink?: boolean;
 };
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -45,7 +47,7 @@ function Title({ name }: { name: string }) {
  * portada → una diapositiva por pieza → cierre de contacto. Flechas, teclado, deslizar, miniaturas,
  * índice y pantalla completa. Solo transform/opacity; con movimiento reducido las transiciones se anulan.
  */
-export function Lookbook({ items, events, whatsapp, siteUrl, coverImage, pdfUrl }: Props) {
+export function Lookbook({ items, events, whatsapp, siteUrl, coverImage, pdfUrl, showEventsLink = true }: Props) {
   const last = items.length + 1;
   const [i, setI] = useState(0);
   const [indexOpen, setIndexOpen] = useState(false);
@@ -273,9 +275,11 @@ export function Lookbook({ items, events, whatsapp, siteUrl, coverImage, pdfUrl 
                 <Button size="sm" variant="secondary" className="lb-btn-outline" onClick={() => go(0)}>
                   Volver al inicio del catálogo
                 </Button>
-                <Button size="sm" variant="secondary" className="lb-btn-outline" href="/catalogo/eventos">
-                  Ver eventos
-                </Button>
+                {showEventsLink && (
+                  <Button size="sm" variant="secondary" className="lb-btn-outline" href="/catalogo/eventos">
+                    Ver eventos
+                  </Button>
+                )}
                 {pdfUrl && (
                   <Button size="sm" variant="secondary" className="lb-btn-outline" href={pdfUrl} download leftIcon={<Download className="size-4" aria-hidden />}>
                     Descargar PDF

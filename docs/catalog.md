@@ -6,12 +6,22 @@ Por decisión de Andres (23-nov-2026) el catálogo se entrega como **maqueta sin
 | Ruta | Contenido |
 |---|---|
 | `/catalogo` | **Catálogo web en modo slider** (estructura aprobada, vista `#catalogo` del prototipo): portada → una diapositiva por pieza → cierre de contacto. Flechas, teclado (←/→, Inicio/Fin), deslizar en móvil, miniaturas, índice y pantalla completa. Sin encabezado del sitio. |
-| `/catalogo/eventos` | 6 categorías de evento, personalización, cómo cotizar |
-| `/catalogo/eventos/[slug]` | Presentación, ideas, productos del evento, cotización |
-| `/catalogo/velas` | Velas individuales con filtro por colección (`?categoria=`) y orden |
+| `/catalogo/eventos` | 6 categorías de evento, personalización, cómo cotizar · **404 en producción** |
+| `/catalogo/eventos/[slug]` | Presentación, ideas, productos del evento, cotización · **404 en producción** |
+| `/catalogo/velas` | Velas individuales con filtro por colección (`?categoria=`) y orden · **404 en producción** |
 | `/catalogo/producto/[slug]` | Galería, precio o "Precio a cotizar", ficha, categorías, WhatsApp, compartir, relacionados |
 
 Todas se prerenderizan (estáticas). Un slug desconocido responde 404.
+
+## Modo de entrega (`APP_MODE`)
+
+El cliente paga por el Linktree, el catálogo y el panel; el resto del proyecto sigue en desarrollo. Con `APP_MODE=production`:
+
+- `/catalogo/eventos`, `/catalogo/eventos/[slug]` y `/catalogo/velas` responden **404** (`src/lib/mode.ts`).
+- Los enlaces del Linktree que apuntaban allí abren **WhatsApp** con mensaje contextual; si no hay número, se omiten (`src/features/linktree/delivery.ts`).
+- El catálogo slider, los productos individuales y el PDF siguen visibles; su navegación, breadcrumbs y sitemap no enlazan a las secciones ocultas.
+
+Con `development` (o en local) todo está visible. Si la variable falta se usa `NODE_ENV` (local → development, build/despliegue → production).
 
 El botón "Descargar PDF" del prototipo ya existe (Fase 6, ver `docs/catalog-pdf.md`).
 

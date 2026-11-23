@@ -1,8 +1,10 @@
 import { cacheLife, cacheTag } from "next/cache";
+import { isProductionMode } from "@/lib/mode";
 import { createPublicClient, siteMediaUrl } from "@/lib/supabase/public";
 import { buildDefaultLinks, DEV_DEMO_SETTINGS, envContactSettings } from "./defaults";
+import { adaptLinksForProduction } from "./delivery";
 import { normalizeLinks, settingString, type LinkRow } from "./normalize";
-import type { LinktreeData, LinktreeSettings } from "./types";
+import type { LinkItem, LinktreeData, LinktreeSettings } from "./types";
 
 export const LINKTREE_CACHE_TAG = "linktree";
 
@@ -13,20 +15,26 @@ export const LINKTREE_CACHE_TAG = "linktree";
  * Contacto: Supabase (site_settings) → variables WHATSAPP_NUMBER / INSTAGRAM_URL → (solo desarrollo) demo.
  */
 export function getLinktreeData(): Promise<LinktreeData> {
-  // El contacto de las variables de entorno va como argumento: así forma parte de la clave de caché
-  // y un cambio de WHATSAPP_NUMBER nunca reutiliza un resultado viejo.
-  return loadLinktreeData(envContactSettings());
+  // El contacto de las variables de entorno y el modo van como argumentos: así forman parte de la
+  // clave de caché y un cambio de WHATSAPP_NUMBER o de APP_MODE nunca reutiliza un resultado viejo.
+  return loadLinktreeData(envContactSettings(), isProductionMode());
 }
 
-async function loadLinktreeData(env: LinktreeSettings): Promise<LinktreeData> {
+async function loadLinktreeData(env: LinktreeSettings, production: boolean): Promise<LinktreeData> {
   "use cache";
   cacheTag(LINKTREE_CACHE_TAG);
   cacheLife({ stale: 60, revalidate: 60, expire: 3600 });
 
+  const finish = (links: LinkItem[], settings: LinktreeSettings, source: LinktreeData["source"]): LinktreeData => ({
+    links: production ? adaptLinksForProduction(links, settings.whatsapp) : links,
+    settings,
+    source,
+  });
+
   const supabase = createPublicClient();
   if (!supabase) {
     const settings = env.whatsapp || env.instagram || process.env.NODE_ENV === "production" ? env : DEV_DEMO_SETTINGS;
-    return { links: buildDefaultLinks(settings), settings, source: "default" };
+    return finish(buildDefaultLinks(settings), settings, "default");
   }
 
   const [linksRes, settingsRes] = await Promise.all([
@@ -42,6 +50,6 @@ async function loadLinktreeData(env: LinktreeSettings): Promise<LinktreeData> {
   };
 
   const links = linksRes.error ? [] : normalizeLinks((linksRes.data ?? []) as LinkRow[], siteMediaUrl);
-  if (links.length === 0) return { links: buildDefaultLinks(settings), settings, source: "default" };
-  return { links, settings, source: "supabase" };
+  if (links.length === 0) return finish(buildDefaultLinks(settings), settings, "default");
+  return finish(links, settings, "supabase");
 }
