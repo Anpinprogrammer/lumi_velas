@@ -1,5 +1,14 @@
-import { PhasePlaceholder } from "@/components/placeholder";
+import { Container } from "@/components/ui/container";
+import { DashboardView } from "@/features/admin/components/dashboard-view";
+import { getDashboardStats } from "@/features/admin/queries";
+import { requireAdmin } from "@/lib/auth/admin";
 
-export default function Dashboard() {
-  return <PhasePlaceholder title="Resumen" phase="Fase 5" note="Aquí irán los totales reales de productos, enlaces y la última generación del PDF." />;
+export default async function Dashboard() {
+  const admin = await requireAdmin();
+  const stats = await getDashboardStats();
+  return (
+    <Container size="wide" className="py-10">
+      <DashboardView stats={stats} email={admin.email} />
+    </Container>
+  );
 }
