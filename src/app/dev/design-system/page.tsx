@@ -35,9 +35,9 @@ const swatches: { name: string; token: string; hex: string; note: string; dark?:
   { name: "Crema", token: "cream-50", hex: "#FBF7F0", note: "Fondo" },
   { name: "Vela", token: "cream-100", hex: "#F7E3D0", note: "Superficie cálida" },
   { name: "Kraft", token: "kraft-300", hex: "#E9C6A9", note: "Empaque" },
-  { name: "Cacao", token: "cocoa-700", hex: "#4A3A30", note: "Texto · 10.1:1", dark: true },
-  { name: "Cacao medio", token: "cocoa-500", hex: "#6B5647", note: "Texto 2 · 6.5:1", dark: true },
-  { name: "Noche", token: "night", hex: "#2A2520", note: "Temporada oscura", dark: true },
+  { name: "Marrón del logo", token: "brown-700", hex: "#452E23", note: "Texto · tagline del logo", dark: true },
+  { name: "Marrón medio", token: "brown-400", hex: "#846852", note: "Tono del mismo marrón", dark: true },
+  { name: "Marfil", token: "ivory", hex: "#FEF5F1", note: "Superficies · vela del logo" },
 ];
 
 const demoImages = [
@@ -188,10 +188,10 @@ export default function DesignSystemPage() {
         </Block>
 
         <Block id="estacional" title="Vista previa: tokens estacionales (navidad)">
-          <div data-season="navidad" className="rounded-lg p-8" style={{ background: "var(--season-bg)", color: "var(--season-text)" }}>
-            <p className="eyebrow" style={{ color: "var(--season-accent)" }}>Navidad Lumi</p>
+          <div data-season="navidad" className="rounded-lg p-8" style={{ background: "linear-gradient(168deg,#666C48,#4F5537)", color: "#FBF7F0" }}>
+            <p className="eyebrow" style={{ color: "#FBD2CB" }}>Navidad Lumi</p>
             <p className="mt-2 font-display text-4xl">Pequeños detalles que iluminan grandes momentos.</p>
-            <Button className="mt-6 !bg-[var(--season-accent)] !text-night">Explorar catálogo</Button>
+            <Button className="mt-6 !bg-flame !text-brown-700">Explorar catálogo</Button>
           </div>
         </Block>
       </Container>

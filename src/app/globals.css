@@ -2,8 +2,9 @@
 
 /* =========================================================
    LUMI — DESIGN TOKENS
-   Fuente: colores muestreados de LUMI_logo_sin_fondo.webp.
-   (*) = derivado del color del logo para cumplir contraste WCAG AA como texto.
+   REGLA: solo colores y tonos del logo (muestreados de LUMI_logo_sin_fondo.webp). No se
+   añaden colores ajenos al logo. (*) = tono más oscuro de un color del logo, para cumplir
+   contraste WCAG AA en texto/botones; el color original se conserva para decoración.
    Capas: primitivos (--lumi-*) -> semánticos (--color-*) -> componentes.
    Documentación: docs/design-system.md
    ========================================================= */
@@ -24,10 +25,9 @@
   --lumi-cream-100: #f7e3d0;
   --lumi-cream-200: #f2d6bd;
   --lumi-kraft-300: #e9c6a9;
-  --lumi-cocoa-700: #4a3a30; /* (*) */
-  --lumi-cocoa-500: #6b5647; /* (*) */
-  --lumi-cocoa-400: #846852; /* tagline del logo */
-  --lumi-night: #2a2520; /* (*) fondo de temporada oscura */
+  --lumi-brown-700: #452e23; /* trazo de "VELAS · RECORDATORIOS": texto principal */
+  --lumi-brown-400: #846852; /* tono medio del mismo marrón */
+  --lumi-ivory: #fef5f1; /* blanco cálido de la vela y la etiqueta */
 
   /* Movimiento */
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -36,14 +36,14 @@
   --dur-base: 280ms;
   --dur-slow: 600ms;
 
-  /* Sombras (tinte cocoa) */
-  --lumi-shadow-soft: 0 1px 2px rgb(74 58 48 / 0.05), 0 12px 32px -12px rgb(74 58 48 / 0.16);
-  --lumi-shadow-lift: 0 2px 4px rgb(74 58 48 / 0.06), 0 24px 48px -18px rgb(74 58 48 / 0.26);
+  /* Sombras (tinte del marrón del logo) */
+  --lumi-shadow-soft: 0 1px 2px rgb(69 46 35 / 0.05), 0 12px 32px -12px rgb(69 46 35 / 0.16);
+  --lumi-shadow-lift: 0 2px 4px rgb(69 46 35 / 0.06), 0 24px 48px -18px rgb(69 46 35 / 0.26);
   --lumi-shadow-glow: 0 0 24px 2px rgb(252 190 92 / 0.35);
 }
 
 @theme inline {
-  /* Utilidades Tailwind: bg-sage-600, text-cocoa-700, border-blush-200 … */
+  /* Utilidades Tailwind: bg-sage-600, text-brown-700, border-blush-200 … */
   --color-sage-700: var(--lumi-sage-700);
   --color-sage-600: var(--lumi-sage-600);
   --color-sage-400: var(--lumi-sage-400);
@@ -59,10 +59,9 @@
   --color-cream-100: var(--lumi-cream-100);
   --color-cream-200: var(--lumi-cream-200);
   --color-kraft-300: var(--lumi-kraft-300);
-  --color-cocoa-700: var(--lumi-cocoa-700);
-  --color-cocoa-500: var(--lumi-cocoa-500);
-  --color-cocoa-400: var(--lumi-cocoa-400);
-  --color-night: var(--lumi-night);
+  --color-brown-700: var(--lumi-brown-700);
+  --color-brown-400: var(--lumi-brown-400);
+  --color-ivory: var(--lumi-ivory);
 
   /* Semánticos */
   --color-brand: var(--lumi-sage-600);
@@ -70,15 +69,15 @@
   --color-brand-secondary: var(--lumi-blush-200);
   --color-brand-accent: var(--lumi-amber-400);
   --color-background: var(--lumi-cream-50);
-  --color-surface: #ffffff;
+  --color-surface: var(--lumi-ivory);
   --color-surface-warm: var(--lumi-cream-100);
-  --color-text: var(--lumi-cocoa-700);
-  --color-text-muted: var(--lumi-cocoa-500);
-  --color-border: rgb(74 58 48 / 0.14);
+  --color-text: var(--lumi-brown-700);
+  --color-text-muted: rgb(69 46 35 / 0.78); /* mismo marrón del logo, con transparencia */
+  --color-border: rgb(69 46 35 / 0.14);
   --color-focus: var(--lumi-coral-600);
-  --color-success: #3f6b3a;
+  --color-success: var(--lumi-sage-700);
   --color-warning: var(--lumi-amber-600);
-  --color-error: #a63a30;
+  --color-error: var(--lumi-coral-600);
 
   /* Tipografía */
   --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
@@ -110,12 +109,6 @@
   --breakpoint-xl: 80rem;
 }
 
-/* Tema estacional: solo sobrescribe --season-*, nunca los tokens de marca. */
-[data-season="navidad"] {
-  --season-bg: var(--lumi-night);
-  --season-text: var(--lumi-cream-50);
-  --season-accent: var(--lumi-flame);
-}
 
 @media (prefers-reduced-motion: reduce) {
   :root {
@@ -147,7 +140,7 @@ body {
 }
 ::selection {
   background: var(--lumi-blush-200);
-  color: var(--lumi-cocoa-700);
+  color: var(--lumi-brown-700);
 }
 
 @media (prefers-reduced-motion: reduce) {

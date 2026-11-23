@@ -38,8 +38,8 @@
     season-twinkle 4.6s ease-in-out infinite alternate;
   animation-delay: calc(var(--i) * 110ms), calc(var(--i) * 260ms);
 }
-.season-bulb[data-tone="1"] { background: #ffe3a3; }
-.season-bulb[data-tone="2"] { background: #e9a24b; }
+.season-bulb[data-tone="1"] { background: #fbd2cb; }
+.season-bulb[data-tone="2"] { background: #d28a42; }
 .season-bulb::before {
   /* casquillo */
   content: "";
@@ -61,7 +61,7 @@
   position: absolute;
   width: var(--s);
   height: var(--s);
-  background: #ffe3a3;
+  background: #fbf7f0;
   clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
   opacity: 0;
   animation: season-spark var(--t) ease-in-out infinite;

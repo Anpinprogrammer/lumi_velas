@@ -42,22 +42,115 @@
   box-shadow: 0 0 0 1px rgb(252 190 92 / 0.6), 0 14px 44px -12px rgb(252 190 92 / 0.45);
 }
 
-/* Aureola cálida detrás del arco en temporadas oscuras */
-.lumi-page[data-season="navidad"] .lumi-arch::before {
-  content: "";
-  position: absolute;
-  inset: -12% -18%;
-  background: radial-gradient(closest-side, rgb(252 190 92 / 0.22), transparent 70%);
-  z-index: -1;
-}
 @media (prefers-reduced-motion: reduce) {
   .lumi-card, .lumi-card::after { transition: none; }
   .lumi-card:hover { transform: none; }
 }
 
-/* El borde del arco mantiene su forma sobre fondos oscuros */
-.lumi-arch-frame { box-shadow: 0 0 0 1px var(--page-line); }
-.lumi-page[data-season="navidad"] .lumi-arch-frame { box-shadow: 0 0 0 1px rgb(252 190 92 / 0.45), 0 0 40px -6px rgb(252 190 92 / 0.35); }
-
 /* El texto auxiliar (.eyebrow) hereda el contraste de la página, también en temporadas oscuras */
 .lumi-page .eyebrow { color: var(--page-muted); }
+
+/* =========================================================
+   HÉROE — el logo completo como protagonista
+   ========================================================= */
+.lumi-stage { isolation: isolate; }
+.lumi-plate {
+  background:
+    radial-gradient(ellipse 70% 45% at 50% 30%, rgb(252 190 92 / 0.22), transparent 70%),
+    linear-gradient(180deg, var(--lumi-blush-100) 0%, var(--lumi-cream-50) 62%, var(--lumi-cream-100) 100%);
+  box-shadow:
+    0 0 0 1px var(--lumi-amber-400),
+    0 0 0 7px rgb(254 245 241 / 0.55),
+    0 0 0 8px rgb(210 138 66 / 0.55),
+    var(--shadow-lift);
+}
+.lumi-halo {
+  position: absolute;
+  inset: -14% -22% -6%;
+  z-index: -1;
+  background: radial-gradient(closest-side, rgb(252 190 92 / 0.28), transparent 72%);
+}
+.lumi-page[data-season="navidad"] .lumi-halo { background: radial-gradient(closest-side, rgb(252 190 92 / 0.5), transparent 72%); }
+
+/* Resplandor sobre la llama (posición medida del logo: 45.2% / 29.9%) */
+.lumi-flame-glow {
+  position: absolute;
+  left: 45.2%;
+  top: 29.9%;
+  width: 46%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(252 190 92 / 0.75), rgb(252 190 92 / 0.25) 45%, transparent 70%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  animation: lumi-flicker 3.4s ease-in-out infinite alternate;
+}
+@keyframes lumi-flicker {
+  0% { opacity: 0.55; transform: scale(0.92); }
+  45% { opacity: 0.9; transform: scale(1.04); }
+  100% { opacity: 0.7; transform: scale(0.98); }
+}
+
+/* El logo respira suavemente */
+.lumi-logo-box { animation: lumi-float 7s ease-in-out infinite; }
+@keyframes lumi-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Corazones que suben desde la llama */
+.lumi-heart {
+  position: absolute;
+  top: 70%;
+  background: var(--lumi-coral-400);
+  opacity: 0;
+  clip-path: path("M12 21s-7.5-4.6-9.6-9.3C.9 8.2 3 4.5 6.6 4.5c2 0 3.6 1.1 5.4 3.2 1.8-2.1 3.4-3.2 5.4-3.2 3.6 0 5.7 3.7 4.2 7.2C19.5 16.4 12 21 12 21z");
+  transform-origin: 0 0;
+  animation: lumi-rise-heart var(--t) ease-in infinite;
+  animation-delay: var(--d);
+  scale: var(--k);
+  width: 24px;
+  height: 24px;
+}
+.lumi-heart:nth-child(even) { background: var(--lumi-blush-200); }
+@keyframes lumi-rise-heart {
+  0% { opacity: 0; translate: 0 0; }
+  15% { opacity: 0.85; }
+  100% { opacity: 0; translate: 0 -110px; }
+}
+
+/* Destellos alrededor del arco */
+.lumi-star {
+  position: absolute;
+  width: var(--s);
+  height: var(--s);
+  background: var(--lumi-amber-400);
+  clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+  opacity: 0;
+  animation: lumi-twinkle 4.8s ease-in-out infinite;
+  animation-delay: var(--d);
+  pointer-events: none;
+}
+.lumi-page[data-season="navidad"] .lumi-star { background: var(--lumi-flame); }
+@keyframes lumi-twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.5) rotate(0); }
+  50% { opacity: 1; transform: scale(1) rotate(20deg); }
+}
+@media (max-width: 639px) {
+  .lumi-heart:nth-child(n + 4), .lumi-star:nth-of-type(n + 4) { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lumi-logo-box, .lumi-flame-glow { animation: none; }
+  .lumi-flame-glow { opacity: 0.75; }
+  .lumi-heart { display: none; }
+  .lumi-star { animation: none; opacity: 0.8; transform: none; }
+}
+
+/* Fondo base: crema del logo con manchas suaves de rosa y kraft (como la mancha detrás de la vela) */
+.lumi-page[data-season="base"] {
+  background:
+    radial-gradient(42rem 32rem at 8% 6%, rgb(251 210 203 / 0.55), transparent 70%),
+    radial-gradient(36rem 30rem at 96% 92%, rgb(233 198 169 / 0.4), transparent 70%),
+    var(--page-bg);
+}

@@ -19,7 +19,7 @@ Archivos: `src/features/seasonal/` → `types.ts`, `themes.ts` (calendario), `en
 Solo variables de **página** (`--page-bg`, `--page-text`, `--page-muted`, `--page-accent`, `--page-surface`, `--page-on-surface`, `--page-glow`) y la capa decorativa. **Nunca** los tokens de marca (`--color-brand`, logo, tipografías).
 
 ## Navidad
-- Fondo cálido `#2A2520`, texto crema, acento llama `#FCBE5C`; tarjetas crema para mantener el contraste.
+- Fondo en degradado del verde del wordmark (`#666C48` → `#4F5537`), texto crema `#FBF7F0` (≥ 5:1), luces en llama/rosa/ámbar del logo; tarjetas marfil con texto marrón del logo. La llama `#FCBE5C` se usa solo como luz decorativa (no como color de texto).
 - Guirnalda de 16 luces (8 en móvil) con aparición gradual escalonada y parpadeo suave, ramas de pino en las esquinas, hasta 14 destellos (según intensidad; la mitad en móvil), aureola cálida tras el arco y brillo dorado al pasar el cursor, enfocar o tocar una tarjeta.
 - Parallax muy sutil de las ramas (CSS `scroll()`), solo en navegadores que lo soportan y sin movimiento reducido.
 - Sin nieve (el brief pide evitar excesos); sin efectos infantiles.

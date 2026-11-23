@@ -7,10 +7,10 @@ export type ButtonVariant = "primary" | "secondary" | "ghost" | "accent";
 export type ButtonSize = "sm" | "md" | "lg";
 
 export const buttonVariants: Record<ButtonVariant, string> = {
-  primary: "bg-brand text-white hover:bg-brand-hover",
+  primary: "bg-brand text-ivory hover:bg-brand-hover",
   secondary: "border border-brand text-brand hover:bg-blush-100",
   ghost: "text-text hover:bg-cream-100",
-  accent: "bg-coral-600 text-white hover:bg-[#8f4234]",
+  accent: "bg-coral-600 text-ivory hover:brightness-90",
 };
 export const buttonSizes: Record<ButtonSize, string> = {
   sm: "h-9 px-4 text-[length:var(--text-label)]",

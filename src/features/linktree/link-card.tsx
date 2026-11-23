@@ -31,8 +31,8 @@ export function LinkCard({ link, index }: { link: LinkItem; index: number }) {
       <Anchor link={link} style={delay} className={cn(base, "min-h-60 flex-col justify-end rounded-lg p-6 text-cream-50 sm:min-h-72 sm:p-8")}>
         {link.imageUrl && <Image src={link.imageUrl} alt="" fill priority={index === 0} sizes="(min-width: 1024px) 560px, 100vw" className="-z-10 object-cover object-[50%_30%] transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out)] group-hover:scale-[1.04]" />}
         <span aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(to_top,rgb(var(--page-scrim)/0.92),rgb(var(--page-scrim)/0.5)_55%,rgb(var(--page-scrim)/0.05))]" />
-        <span className="absolute right-5 top-5 inline-flex size-11 items-center justify-center rounded-pill bg-cream-50/90 text-cocoa-700 backdrop-blur"><LinkIcon name={link.icon ?? "sparkles"} className="size-5" /></span>
-        <span className="eyebrow !text-flame">Destacado</span>
+        <span className="absolute right-5 top-5 inline-flex size-11 items-center justify-center rounded-pill bg-cream-50/90 text-brown-700 backdrop-blur"><LinkIcon name={link.icon ?? "sparkles"} className="size-5" /></span>
+        <span className="eyebrow !text-blush-200">Destacado</span>
         <span className="font-display text-3xl leading-tight sm:text-4xl">{link.label}</span>
         {link.description && <span className="mt-1 text-sm text-cream-50/85">{link.description}</span>}
         <ArrowUpRight aria-hidden className="absolute bottom-6 right-6 size-6 transition-transform duration-[var(--dur-base)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 sm:bottom-8 sm:right-8" />

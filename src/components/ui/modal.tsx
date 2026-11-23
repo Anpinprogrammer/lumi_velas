@@ -46,7 +46,7 @@ export function Modal({ open, onClose, title, description, children, footer, siz
       }}
       className={cn(
         "m-auto w-[calc(100%-2rem)] rounded-lg bg-surface p-0 text-text shadow-lift",
-        "backdrop:bg-night/50 backdrop:backdrop-blur-[2px]",
+        "backdrop:bg-sage-700/50 backdrop:backdrop-blur-[2px]",
         "open:animate-rise",
         sizes[size],
         className,

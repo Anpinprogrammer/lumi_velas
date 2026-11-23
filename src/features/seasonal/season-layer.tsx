@@ -48,9 +48,9 @@ const PINE = pineNeedles(7);
 function PineBranch({ className }: { className: string }) {
   return (
     <svg className={`season-pine ${className}`} viewBox="0 0 300 130" fill="none" strokeLinecap="round" aria-hidden>
-      <path d="M10 8 L265 50" stroke="#4B3A2E" strokeWidth="5" />
+      <path d="M10 8 L265 50" stroke="#452E23" strokeWidth="5" />
       {PINE.map((n, k) => (
-        <line key={k} x1={n.x1.toFixed(1)} y1={n.y1.toFixed(1)} x2={n.x2.toFixed(1)} y2={n.y2.toFixed(1)} stroke={n.c ? "#557860" : "#3F5A43"} strokeWidth="6" />
+        <line key={k} x1={n.x1.toFixed(1)} y1={n.y1.toFixed(1)} x2={n.x2.toFixed(1)} y2={n.y2.toFixed(1)} stroke={n.c ? "#858E65" : "#4F5537"} strokeWidth="6" />
       ))}
     </svg>
   );
