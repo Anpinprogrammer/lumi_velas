@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { useId, useState, type FormEvent } from "react";
-import { ArrowRight, Check, Copy, MessageCircle, Pencil } from "lucide-react";
+import { ArrowRight, Check, Copy, Pencil } from "lucide-react";
+import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 import { Button, Input, Modal, Select, Textarea } from "@/components/ui";
 import type { ButtonSize, ButtonVariant } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
@@ -91,7 +92,7 @@ export function QuoteButton({ whatsapp, events, defaultEvent = "", product, labe
               <Button variant="secondary" leftIcon={copied ? <Check className="size-4" aria-hidden /> : <Copy className="size-4" aria-hidden />} onClick={copy}>
                 {copied ? "Copiado" : "Copiar mensaje"}
               </Button>
-              <Button href={buildWhatsAppUrl(whatsapp, message)} target="_blank" leftIcon={<MessageCircle className="size-4" aria-hidden />}>Abrir WhatsApp</Button>
+              <Button href={buildWhatsAppUrl(whatsapp, message)} target="_blank" leftIcon={<WhatsAppIcon className="size-4" aria-hidden />}>Abrir WhatsApp</Button>
             </>
           ) : (
             <>

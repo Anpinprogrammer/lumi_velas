@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, Download, LayoutGrid, Maximize, MessageCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, Download, LayoutGrid, Maximize } from "lucide-react";
+import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 import { Button, Modal } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { formatCOP } from "@/lib/format";
@@ -231,7 +232,7 @@ export function Lookbook({ items, events, whatsapp, siteUrl, coverImage, pdfUrl 
                       <Button
                         href={buildWhatsAppUrl(whatsapp, productInquiryMessage(p, `${siteUrl}/catalogo/producto/${p.slug}`))}
                         target="_blank"
-                        leftIcon={<MessageCircle className="size-4" aria-hidden />}
+                        leftIcon={<WhatsAppIcon className="size-4" aria-hidden />}
                       >
                         Lo quiero
                       </Button>
@@ -262,7 +263,7 @@ export function Lookbook({ items, events, whatsapp, siteUrl, coverImage, pdfUrl 
                     target="_blank"
                     variant="secondary"
                     className="lb-btn-outline"
-                    leftIcon={<MessageCircle className="size-4" aria-hidden />}
+                    leftIcon={<WhatsAppIcon className="size-4" aria-hidden />}
                   >
                     Escríbenos
                   </Button>

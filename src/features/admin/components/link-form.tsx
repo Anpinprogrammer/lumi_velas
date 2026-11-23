@@ -10,7 +10,7 @@ import { LINK_STYLE_LABELS } from "./labels";
 
 const ICON_LABELS: Record<string, string> = {
   "book-open": "Libro abierto", calendar: "Calendario", "file-down": "Descarga", flame: "Llama", gift: "Regalo", "graduation-cap": "Birrete",
-  heart: "Corazón", instagram: "Instagram", link: "Enlace", mail: "Correo", "map-pin": "Ubicación", "message-circle": "WhatsApp / chat", phone: "Teléfono", sparkles: "Destellos",
+  heart: "Corazón", instagram: "Instagram", link: "Enlace", mail: "Correo", "map-pin": "Ubicación", "message-circle": "Chat", whatsapp: "WhatsApp", phone: "Teléfono", sparkles: "Destellos",
 };
 
 export function LinkForm({ action, link }: { action: (prev: FormState, fd: FormData) => Promise<FormState>; link?: AdminLink | null }) {
