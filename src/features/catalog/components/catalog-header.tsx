@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MessageCircle } from "lucide-react";
+import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 import { buildWhatsAppUrl } from "@/lib/validation/url";
 import { getContact } from "./contact";
 
@@ -36,7 +36,7 @@ export async function CatalogHeader() {
             rel="noopener noreferrer"
             className="ml-auto inline-flex h-10 items-center gap-2 rounded-pill bg-brand px-4 text-sm font-medium text-ivory transition-colors hover:bg-brand-hover"
           >
-            <MessageCircle aria-hidden className="size-4" />
+            <WhatsAppIcon aria-hidden className="size-4" />
             <span>Escríbenos</span>
           </a>
         )}

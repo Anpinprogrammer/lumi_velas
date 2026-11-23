@@ -30,7 +30,7 @@ export function buildDefaultLinks(settings: LinktreeSettings): LinkItem[] {
       description: null,
       url: buildWhatsAppUrl(settings.whatsapp, "Hola Lumi, quiero más información."),
       style: "compact",
-      icon: "message-circle",
+      icon: "whatsapp",
       imageUrl: null,
     });
   }

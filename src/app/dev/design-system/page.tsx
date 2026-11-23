@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { Gift, Heart, Camera, MessageCircle, Plus, Sparkles } from "lucide-react";
+import { Gift, Heart, Camera, Plus, Sparkles } from "lucide-react";
+import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -134,7 +135,7 @@ export default function DesignSystemPage() {
             </div>
             <div className="flex flex-wrap items-center gap-3">
               <Button size="sm">Pequeño</Button>
-              <Button size="md" leftIcon={<MessageCircle className="size-4" />}>Cotiza por WhatsApp</Button>
+              <Button size="md" leftIcon={<WhatsAppIcon className="size-4" />}>Cotiza por WhatsApp</Button>
               <Button size="lg" href="#logo" rightIcon={<Sparkles className="size-4" />}>Como enlace</Button>
               <IconButton label="Agregar" icon={<Plus />} variant="primary" />
               <IconButton label="Cámara" icon={<Camera />} variant="secondary" />

@@ -1,5 +1,6 @@
 import { BookOpen, Calendar, FileDown, Flame, Gift, GraduationCap, Heart, Link2, Mail, MapPin, MessageCircle, Phone, Sparkles, type LucideIcon } from "lucide-react";
 import type { SVGProps } from "react";
+import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 
 /** Lucide ya no incluye iconos de marcas: glifo simple propio para Instagram. */
 function InstagramGlyph(props: SVGProps<SVGSVGElement>) {
@@ -12,7 +13,7 @@ function InstagramGlyph(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-type IconComponent = LucideIcon | typeof InstagramGlyph;
+type IconComponent = LucideIcon | typeof InstagramGlyph | typeof WhatsAppIcon;
 
 /** Lista permitida de iconos: la base de datos solo guarda estas claves. */
 export const LINK_ICONS = {
@@ -28,6 +29,7 @@ export const LINK_ICONS = {
   mail: Mail,
   "map-pin": MapPin,
   "message-circle": MessageCircle,
+  whatsapp: WhatsAppIcon,
   phone: Phone,
   sparkles: Sparkles,
 } as const satisfies Record<string, IconComponent>;

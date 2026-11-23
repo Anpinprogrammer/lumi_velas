@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Info, MessageCircle } from "lucide-react";
+import { Info } from "lucide-react";
+import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 import { Badge, Button, ImageGallery, SectionHeading } from "@/components/ui";
 import { getContact } from "@/features/catalog/components/contact";
 import { Breadcrumbs, Em } from "@/features/catalog/components/page-hero";
@@ -97,7 +98,7 @@ export default async function Producto({ params }: PageProps<"/catalogo/producto
                 (isEvent ? (
                   <QuoteButton whatsapp={whatsapp} events={quoteEvents} defaultEvent={firstEvent} product={{ name: p.name, image: p.images[0]?.src }} size="lg" />
                 ) : (
-                  <Button href={buildWhatsAppUrl(whatsapp, productInquiryMessage(p, url))} target="_blank" size="lg" leftIcon={<MessageCircle className="size-4" aria-hidden />}>
+                  <Button href={buildWhatsAppUrl(whatsapp, productInquiryMessage(p, url))} target="_blank" size="lg" leftIcon={<WhatsAppIcon className="size-4" aria-hidden />}>
                     Consultar por WhatsApp
                   </Button>
                 ))}
