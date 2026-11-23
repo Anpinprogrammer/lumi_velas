@@ -53,11 +53,11 @@ export const SEASON_THEMES: readonly SeasonTheme[] = [
     heroImage: "/mock/mock-navidad.webp", // MOCKUP hasta tener fotos reales
     message: { badge: "Navidad Lumi" },
     palette: {
-      // Solo colores del logo: verde del wordmark (#666C48 → #4F5537), crema y llama.
-      bg: "linear-gradient(168deg, #666C48 0%, #5A6040 45%, #4F5537 100%)",
-      text: "#FBF7F0",
-      textMuted: "#FEF5F1",
-      accent: "#FBD2CB",
+      // Tintes claros del verde del logo (#9CA275 mezclado con crema), texto en el marrón del logo.
+      bg: "linear-gradient(168deg, #EEEFE2 0%, #DEE1CB 50%, #CDD1B2 100%)",
+      text: "#452E23",
+      textMuted: "rgb(69 46 35 / 0.8)",
+      accent: "#A84F3F",
       glow: "rgb(252 190 92 / 0.35)",
       surface: "#FEF5F1",
       onSurface: "#452E23",

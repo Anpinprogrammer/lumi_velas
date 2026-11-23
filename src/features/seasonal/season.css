@@ -21,7 +21,7 @@
   height: 70px;
 }
 .season-lights path {
-  stroke: rgb(251 247 240 / 0.28);
+  stroke: rgb(69 46 35 / 0.3);
   stroke-width: 1.2px;
   fill: none;
 }
@@ -49,7 +49,7 @@
   top: -4px;
   height: 4px;
   border-radius: 1px;
-  background: rgb(251 247 240 / 0.35);
+  background: rgb(69 46 35 / 0.35);
 }
 @keyframes season-twinkle {
   from { opacity: 0.55; transform: scale(0.92); }
@@ -61,7 +61,7 @@
   position: absolute;
   width: var(--s);
   height: var(--s);
-  background: #fbf7f0;
+  background: #d28a42;
   clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
   opacity: 0;
   animation: season-spark var(--t) ease-in-out infinite;
