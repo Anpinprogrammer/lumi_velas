@@ -23,17 +23,17 @@ export function Hero({ season, className = "" }: { season: ResolvedSeason; class
   const subtitle = season.message?.subtitle ?? "Pequeños detalles que iluminan grandes momentos.";
 
   return (
-    <header className={`flex flex-col items-center text-center lg:items-start lg:text-left ${className}`}>
-      <div className="lumi-stage animate-rise relative w-full max-w-[320px] sm:max-w-[380px] lg:max-w-[420px]">
+    <header className={`flex items-center gap-3.5 pb-3 pt-4 lg:flex-col lg:items-start lg:gap-0 lg:pb-0 lg:pt-0 ${className}`}>
+      <div className="lumi-stage animate-rise relative w-[4.75rem] shrink-0 sm:w-24 lg:w-64 xl:w-72">
         <div className="lumi-halo" aria-hidden />
-        <div className="lumi-plate relative overflow-hidden rounded-t-[999px] rounded-b-[2.5rem] px-[9%] pb-[7%] pt-[12%]">
+        <div className="lumi-plate relative overflow-hidden rounded-t-[999px] rounded-b-2xl px-[6%] pb-[5%] pt-[9%] lg:rounded-b-3xl lg:px-[9%] lg:pb-[7%] lg:pt-[12%]">
           <div className="lumi-logo-box relative mx-auto aspect-[900/994] w-full">
             <Image
               src="/brand/lumi-logo.webp"
               alt="Lumi · Velas · Recordatorios"
               fill
               priority
-              sizes="(min-width: 1024px) 340px, (min-width: 640px) 300px, 260px"
+              sizes="(min-width: 1280px) 260px, (min-width: 1024px) 230px, 96px"
               className="object-contain"
             />
             <span aria-hidden className="lumi-flame-glow" />
@@ -47,9 +47,11 @@ export function Hero({ season, className = "" }: { season: ResolvedSeason; class
         ))}
       </div>
 
-      <p className="eyebrow mt-10">{badge}</p>
-      <h1 className="font-display mt-3 max-w-[14ch] text-[clamp(2.5rem,1.6rem+3.2vw,4rem)] leading-[0.98] tracking-tight text-[var(--page-text)] lg:max-w-[12ch]">{title}</h1>
-      <p className="mt-4 max-w-sm text-lg text-[var(--page-muted)]">{subtitle}</p>
+      <div className="min-w-0 flex-1 text-left lg:mt-9 lg:flex-none">
+        <p className="eyebrow !text-[10px] lg:!text-xs">{badge}</p>
+        <h1 className="font-display mt-1 text-[1.65rem] font-bold leading-[1.05] tracking-[-0.02em] text-[var(--page-text)] lg:mt-3 lg:max-w-[14ch] lg:text-4xl lg:leading-[1.08] xl:text-[2.85rem]">{title}</h1>
+        <p className="mt-1 text-xs leading-snug text-[var(--page-muted)] lg:mt-4 lg:max-w-sm lg:text-lg">{subtitle}</p>
+      </div>
     </header>
   );
 }

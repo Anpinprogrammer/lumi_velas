@@ -98,7 +98,7 @@ export default function DesignSystemPage() {
             <p className="font-display text-[length:var(--text-h1)] leading-none">Pequeñas luces, <em className="text-coral-600">grandes</em> momentos</p>
             <p className="font-display text-[length:var(--text-h2)] leading-tight">Heading 2 — Cormorant Garamond</p>
             <p className="font-display text-[length:var(--text-h3)]">Heading 3 — Velas para habitar tus espacios</p>
-            <p className="max-w-prose">Body — DM Sans. Creamos velas artesanales y detalles personalizados para iluminar tus celebraciones más especiales.</p>
+            <p className="max-w-prose">Body — Plus Jakarta Sans. Creamos velas artesanales y detalles personalizados para iluminar tus celebraciones más especiales.</p>
             <p className="text-[length:var(--text-caption)] text-text-muted">Caption — Precios en pesos colombianos (COP)</p>
             <p className="eyebrow">Label · Velas · Recordatorios</p>
           </div>
