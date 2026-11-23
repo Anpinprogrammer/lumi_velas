@@ -7,7 +7,7 @@
 | 2 Arquitectura | ✅ fusionada (PR #2) | Estructura, rutas, aislamiento Etapa B, clientes Supabase, auth del panel, esquema + RLS + Storage, pruebas |
 | 3 Linktree | ✅ fusionada (PR #3, ajuste de logo PR #4) | Lumi Experience, enlaces dinámicos, `SeasonalThemeEngine`, temporada navideña (con **fotos mockup**) |
 | 4 Catálogo | ✅ maqueta en revisión | Listados, categorías, detalle, WhatsApp y cotización con **datos de muestra**; la conexión a Supabase queda para cuando el cliente entregue fotos y textos (ver `docs/catalog.md`) |
-| 5 Administración | pendiente | CRUD de productos, imágenes, enlaces, dashboard real |
+| 5 Administración | ✅ en revisión (sin probar con Supabase real) | Dashboard, enlaces, productos e imágenes con validación en servidor (ver `docs/admin-panel.md`). Pendiente: ajustes de contacto, categorías y conectar el catálogo público |
 | 6 PDF | ✅ en revisión (sin backend) | Plantilla editorial A4, descarga pública y generador (selección, orden, vista previa). **Versiones y publicación esperan a Supabase** (ver `docs/catalog-pdf.md`) |
 | 7 Calidad y despliegue | pendiente | Accesibilidad, SEO, rendimiento, seguridad, producción |
 | 8 Web completa | interna | Solo tras autorización del cliente |
