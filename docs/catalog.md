@@ -13,7 +13,7 @@ Por decisión de Andres (23-nov-2026) el catálogo se entrega como **maqueta sin
 
 Todas se prerenderizan (estáticas). Un slug desconocido responde 404.
 
-El botón "Descargar PDF" del prototipo llega con la Fase 6 (PDF).
+El botón "Descargar PDF" del prototipo ya existe (Fase 6, ver `docs/catalog-pdf.md`).
 
 ## Datos de muestra (qué es provisional)
 - `src/features/catalog/mock-data.ts`: textos, precios y fichas **del prototipo aprobado** (no son productos reales).
