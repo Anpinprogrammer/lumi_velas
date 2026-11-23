@@ -33,9 +33,9 @@ export function LinksPage({ season, data }: { season: ResolvedSeason; data: Link
     "--page-glow": p.glow,
     "--page-surface": p.surface,
     "--page-on-surface": p.onSurface,
-    "--page-scrim": "79 85 55",
-    "--page-line": "rgb(69 46 35 / 0.18)",
-    "--color-focus": "#A84F3F",
+    "--page-scrim": season.seasonal ? "79 85 55" : "79 85 55",
+    "--page-line": season.seasonal ? "rgb(251 247 240 / 0.22)" : "rgb(69 46 35 / 0.18)",
+    "--color-focus": season.seasonal ? "#FCBE5C" : "#A84F3F",
   } as CSSProperties;
 
   let n = 0;
