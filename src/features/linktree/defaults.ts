@@ -46,3 +46,13 @@ export const DEV_DEMO_SETTINGS: LinktreeSettings = {
   instagram: "https://www.instagram.com/",
   email: null,
 };
+
+/**
+ * Contacto desde variables de entorno (servidor): permite publicar la maqueta con el WhatsApp real
+ * antes de conectar Supabase. WHATSAPP_NUMBER en formato internacional sin "+"; INSTAGRAM_URL https.
+ */
+export function envContactSettings(): LinktreeSettings {
+  const whatsapp = (process.env.WHATSAPP_NUMBER ?? "").replace(/\D/g, "") || null;
+  const ig = process.env.INSTAGRAM_URL?.trim();
+  return { whatsapp, instagram: ig && ig.startsWith("https://") ? ig : null, email: null };
+}

@@ -5,8 +5,8 @@
 | 0 Auditoría | ✅ | Informe de prototipo, logo y recursos |
 | 1 Sistema de diseño | ✅ fusionada (PR #1) | Tokens, 17 componentes, showcase. **Tipografías provisionales** |
 | 2 Arquitectura | ✅ fusionada (PR #2) | Estructura, rutas, aislamiento Etapa B, clientes Supabase, auth del panel, esquema + RLS + Storage, pruebas |
-| 3 Linktree | ✅ en revisión | Lumi Experience, enlaces dinámicos, `SeasonalThemeEngine`, temporada navideña (con **fotos mockup**) |
-| 4 Catálogo | pendiente | Listados, detalle, WhatsApp, datos reales, tipos generados con `supabase gen types` |
+| 3 Linktree | ✅ fusionada (PR #3, ajuste de logo PR #4) | Lumi Experience, enlaces dinámicos, `SeasonalThemeEngine`, temporada navideña (con **fotos mockup**) |
+| 4 Catálogo | ✅ maqueta en revisión | Listados, categorías, detalle, WhatsApp y cotización con **datos de muestra**; la conexión a Supabase queda para cuando el cliente entregue fotos y textos (ver `docs/catalog.md`) |
 | 5 Administración | pendiente | CRUD de productos, imágenes, enlaces, dashboard real |
 | 6 PDF | pendiente | Plantilla editorial, versiones, publicación, ruta de descarga |
 | 7 Calidad y despliegue | pendiente | Accesibilidad, SEO, rendimiento, seguridad, producción |
