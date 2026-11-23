@@ -1,11 +1,9 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import { LinksPage } from "@/features/linktree/links-page";
 
-/** Marcador temporal: el Linktree "Lumi Experience" ocupará "/" en la Fase 3. */
+// "/" sirve el Linktree en la primera entrega; la versión canónica es /links.
+export const metadata: Metadata = { alternates: { canonical: "/links" } };
+
 export default function Home() {
-  return (
-    <main className="flex min-h-dvh flex-col items-center justify-center gap-6 px-6 text-center">
-      <Image src="/brand/lumi-logo.webp" alt="Lumi · Velas · Recordatorios" width={260} height={287} priority />
-      <p className="eyebrow">Próximamente</p>
-    </main>
-  );
+  return <LinksPage />;
 }
