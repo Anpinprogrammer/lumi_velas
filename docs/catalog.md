@@ -5,13 +5,15 @@ Por decisión de Andres (23-nov-2026) el catálogo se entrega como **maqueta sin
 ## Rutas
 | Ruta | Contenido |
 |---|---|
-| `/catalogo` | Entrada: eventos / velas, accesos por tipo de evento, favoritas, contacto |
+| `/catalogo` | **Catálogo web en modo slider** (estructura aprobada, vista `#catalogo` del prototipo): portada → una diapositiva por pieza → cierre de contacto. Flechas, teclado (←/→, Inicio/Fin), deslizar en móvil, miniaturas, índice y pantalla completa. Sin encabezado del sitio. |
 | `/catalogo/eventos` | 6 categorías de evento, personalización, cómo cotizar |
 | `/catalogo/eventos/[slug]` | Presentación, ideas, productos del evento, cotización |
 | `/catalogo/velas` | Velas individuales con filtro por colección (`?categoria=`) y orden |
 | `/catalogo/producto/[slug]` | Galería, precio o "Precio a cotizar", ficha, categorías, WhatsApp, compartir, relacionados |
 
 Todas se prerenderizan (estáticas). Un slug desconocido responde 404.
+
+El botón "Descargar PDF" del prototipo llega con la Fase 6 (PDF).
 
 ## Datos de muestra (qué es provisional)
 - `src/features/catalog/mock-data.ts`: textos, precios y fichas **del prototipo aprobado** (no son productos reales).
