@@ -1,0 +1,63 @@
+.lumi-page {
+  background: var(--page-bg);
+  color: var(--page-text);
+  transition: background-color var(--dur-slow) var(--ease);
+}
+.lumi-page :focus-visible {
+  outline-color: var(--color-focus);
+}
+
+/* Tarjetas: elevación al pasar el cursor / enfocar */
+.lumi-card {
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease);
+  box-shadow: var(--shadow-soft);
+  -webkit-tap-highlight-color: transparent;
+}
+.lumi-card:active { transform: scale(0.985); }
+@media (hover: hover) {
+  .lumi-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
+}
+
+/* Destello al interactuar (temporadas con brillo): solo opacity/transform */
+.lumi-page[data-season="navidad"] .lumi-card::after {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  z-index: -1;
+  background: radial-gradient(circle at var(--mx, 85%) var(--my, 20%), rgb(252 190 92 / 0.55), transparent 45%);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity var(--dur-base) var(--ease), transform var(--dur-slow) var(--ease-out);
+  pointer-events: none;
+}
+.lumi-page[data-season="navidad"] .lumi-card:hover::after,
+.lumi-page[data-season="navidad"] .lumi-card:focus-visible::after,
+.lumi-page[data-season="navidad"] .lumi-card:active::after {
+  opacity: 1;
+  transform: scale(1);
+}
+.lumi-page[data-season="navidad"] .lumi-card:hover {
+  box-shadow: 0 0 0 1px rgb(252 190 92 / 0.6), 0 14px 44px -12px rgb(252 190 92 / 0.45);
+}
+
+/* Aureola cálida detrás del arco en temporadas oscuras */
+.lumi-page[data-season="navidad"] .lumi-arch::before {
+  content: "";
+  position: absolute;
+  inset: -12% -18%;
+  background: radial-gradient(closest-side, rgb(252 190 92 / 0.22), transparent 70%);
+  z-index: -1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lumi-card, .lumi-card::after { transition: none; }
+  .lumi-card:hover { transform: none; }
+}
+
+/* El borde del arco mantiene su forma sobre fondos oscuros */
+.lumi-arch-frame { box-shadow: 0 0 0 1px var(--page-line); }
+.lumi-page[data-season="navidad"] .lumi-arch-frame { box-shadow: 0 0 0 1px rgb(252 190 92 / 0.45), 0 0 40px -6px rgb(252 190 92 / 0.35); }
+
+/* El texto auxiliar (.eyebrow) hereda el contraste de la página, también en temporadas oscuras */
+.lumi-page .eyebrow { color: var(--page-muted); }

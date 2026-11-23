@@ -12,7 +12,7 @@ Next.js 16 (App Router, Cache Components) · React 19 · TypeScript estricto · 
 ```text
 src/
 ├── app/                      # solo rutas y composición
-│   ├── page.tsx · links/     # Linktree (hoy marcador)
+│   ├── page.tsx · links/     # Linktree (Fase 3)
 │   ├── catalogo/             # catálogo público (marcadores; Fase 4)
 │   ├── admin/
 │   │   ├── login/            # acceso (público)
@@ -21,7 +21,9 @@ src/
 │   ├── dev/design-system/    # showcase: 404 en producción
 │   └── robots.ts · sitemap.ts
 ├── components/ui/            # sistema de diseño (Fase 1)
-├── features/                 # lógica por dominio (linktree hoy; catalog, admin, seasonal después)
+├── features/                 # lógica por dominio
+│   ├── linktree/             # página, tarjetas, datos (Supabase + respaldo), mockups
+│   └── seasonal/             # SeasonalThemeEngine y capa decorativa
 ├── lib/
 │   ├── supabase/             # client · server · proxy (sesión)
 │   ├── auth/admin.ts         # getAdminUser · requireAdmin
@@ -39,7 +41,7 @@ Regla: las rutas importan de `features/` y `components/`; `features/` no importa
 
 | Ruta | Estado | Notas |
 |---|---|---|
-| `/` y `/links` | marcador (Fase 3) | Mismo componente. **Canónica: `/links`**. |
+| `/` y `/links` | **Linktree implementado (Fase 3)** | Mismo componente. **Canónica: `/links`**. Datos de `linktree_links` (Supabase) con respaldo por defecto; temporada por mes (Bogotá). |
 | `/catalogo`, `/catalogo/eventos`, `/catalogo/velas` | marcador (Fase 4) | |
 | `/catalogo/eventos/[slug]`, `/catalogo/producto/[slug]` | 404 hasta Fase 4 | |
 | `/admin/login` | funcional* | |
@@ -82,3 +84,6 @@ Cuatro capas, de modo que un error aislado no exponga nada:
 | `catalogs` bucket privado + ruta de servidor para el PDF (Fase 6) | el público solo descarga la versión publicada |
 | Categorías sembradas = 6 de eventos | las "colecciones" del prototipo no están confirmadas |
 | Tipos TypeScript de la base de datos se generan con `supabase gen types` en Fase 4 | evita duplicar y desalinear el esquema; hoy no se consulta ninguna tabla desde las páginas |
+
+## Caché de datos públicos (Fase 3)
+`getLinktreeData()` y `getActiveSeason()` usan `"use cache"`: 1 minuto (enlaces) y 10 minutos (temporada), con etiqueta `linktree`. El panel (Fase 5) llamará a `updateTag("linktree")` para que un cambio se vea al instante, sin redesplegar. Las lecturas usan un cliente **sin cookies** (`lib/supabase/public.ts`), solo con lo que RLS permite ver a cualquiera. Si Supabase no está configurado, falla o no hay enlaces activos, se muestran los enlaces por defecto (`defaults.ts`).
