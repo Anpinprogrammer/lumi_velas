@@ -13,7 +13,7 @@ Next.js 16 (App Router, Cache Components) · React 19 · TypeScript estricto · 
 src/
 ├── app/                      # solo rutas y composición
 │   ├── page.tsx · links/     # Linktree (Fase 3)
-│   ├── catalogo/             # catálogo público (marcadores; Fase 4)
+│   ├── catalogo/             # catálogo público (Fase 4, maqueta)
 │   ├── admin/
 │   │   ├── login/            # acceso (público)
 │   │   └── (panel)/          # TODO lo privado; layout con requireAdmin()
@@ -42,8 +42,8 @@ Regla: las rutas importan de `features/` y `components/`; `features/` no importa
 | Ruta | Estado | Notas |
 |---|---|---|
 | `/` y `/links` | **Linktree implementado (Fase 3)** | Mismo componente. **Canónica: `/links`**. Datos de `linktree_links` (Supabase) con respaldo por defecto; temporada por mes (Bogotá). |
-| `/catalogo`, `/catalogo/eventos`, `/catalogo/velas` | marcador (Fase 4) | |
-| `/catalogo/eventos/[slug]`, `/catalogo/producto/[slug]` | 404 hasta Fase 4 | |
+| `/catalogo`, `/catalogo/eventos`, `/catalogo/velas` | **maqueta implementada (Fase 4)** | Datos de muestra en código; ver `docs/catalog.md` |
+| `/catalogo/eventos/[slug]`, `/catalogo/producto/[slug]` | **maqueta implementada (Fase 4)** | Prerenderizadas; slug desconocido = 404 |
 | `/admin/login` | funcional* | |
 | `/admin`, `/admin/productos`, `/admin/links`, `/admin/catalogo-pdf` | protegidas; contenido en Fase 5–6 | |
 | `/cursos` (y futuras de Etapa B) | **404 en producción** | grupo `(etapa-b)` |
