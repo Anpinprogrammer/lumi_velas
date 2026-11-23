@@ -188,8 +188,8 @@ export default function DesignSystemPage() {
         </Block>
 
         <Block id="estacional" title="Vista previa: tokens estacionales (navidad)">
-          <div data-season="navidad" className="rounded-lg p-8" style={{ background: "linear-gradient(168deg,#EEEFE2,#CDD1B2)", color: "#452E23" }}>
-            <p className="eyebrow" style={{ color: "#A84F3F" }}>Navidad Lumi</p>
+          <div data-season="navidad" className="rounded-lg p-8" style={{ background: "linear-gradient(168deg,#666C48,#4F5537)", color: "#FBF7F0" }}>
+            <p className="eyebrow" style={{ color: "#FBD2CB" }}>Navidad Lumi</p>
             <p className="mt-2 font-display text-4xl">Pequeños detalles que iluminan grandes momentos.</p>
             <Button className="mt-6 !bg-flame !text-brown-700">Explorar catálogo</Button>
           </div>
