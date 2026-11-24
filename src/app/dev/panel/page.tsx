@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/container";
+import { AdminHeader } from "@/features/admin/components/admin-header";
 import { DashboardView } from "@/features/admin/components/dashboard-view";
 import { LinkForm } from "@/features/admin/components/link-form";
 import { LinksList, ProductImages, ProductsList } from "@/features/admin/components/lists";
@@ -41,6 +42,8 @@ export default function Page() {
   if (process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_SHOW_DESIGN_SYSTEM !== "true") notFound();
   const names = Object.fromEntries(cats.map((c) => [c.id, c.name]));
   return (
+    <>
+    <AdminHeader email="admin@ejemplo.co" signOut={noop} />
     <Container size="wide" className="space-y-14 py-10">
       <p className="rounded-md bg-blush-100 p-3 text-sm">Vista de diseño con datos inventados: las acciones no hacen nada. El panel real está en /admin.</p>
       <DashboardView email="admin@ejemplo.co" stats={{ products: { published: 1, hidden: 1, featured: 1 }, links: { active: 1, inactive: 1 }, categories: 3, pdf: null, hasWhatsapp: false }} />
@@ -50,5 +53,6 @@ export default function Page() {
       <section className="space-y-4"><h2 className="font-display text-3xl">Formulario de producto</h2><ProductForm action={noopState} product={products[0]} categories={cats} /></section>
       <section className="space-y-4"><h2 className="font-display text-3xl">Fotos</h2><ProductImages productId="p1" images={products[0].images} actions={{ alt: noop, move: noop, remove: noop }} /><ImageUploader action={noopState} productId="p1" /></section>
     </Container>
+    </>
   );
 }
