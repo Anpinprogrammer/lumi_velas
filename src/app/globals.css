@@ -201,3 +201,19 @@ body {
 .animate-rise {
   animation: lumi-rise var(--dur-slow) var(--ease-out) both;
 }
+
+/* Panel lateral del menú del panel administrativo (móvil): entra desde la izquierda. */
+@keyframes lumi-drawer-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: none;
+  }
+}
+.admin-drawer[open] {
+  animation: lumi-drawer-in var(--dur-base) var(--ease-out) both;
+}
+.admin-drawer[open]::backdrop {
+  animation: lumi-fade var(--dur-base) var(--ease) both;
+}
